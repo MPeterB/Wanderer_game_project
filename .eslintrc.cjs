@@ -23,6 +23,10 @@ module.exports = {
     },
   },
   rules: {
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "warn",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "import/no-cycle": "off",
     "prettier/prettier": "error", 
   },
 }
