@@ -2,7 +2,7 @@ const canvasBg = document.querySelector('.background-canvas') as HTMLCanvasEleme
 export const ctxBg = canvasBg.getContext('2d') as CanvasRenderingContext2D;
 
 const floor = document.getElementById('floor') as HTMLImageElement;
-const wall = document.getElementById('wall') as HTMLImageElement;
+export const wall = document.getElementById('wall') as HTMLImageElement;
 
 export const map: HTMLImageElement[][] = [
   [floor, floor, floor, wall, floor, floor, floor, floor, floor, floor],
