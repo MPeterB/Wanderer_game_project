@@ -1,9 +1,14 @@
 import './style.css';
-import { drawMap, map } from './map.ts';
+import { drawMap, map } from './game/map.ts';
+import { ctxG, onKeyPress, heroDown } from './game/hero.ts';
 
-export const canvas = document.querySelector('.main-canvas') as HTMLCanvasElement;
-export const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+export type CharacterPosition = {
+  pixel: number;
+  position: number;
+};
 
 window.onload = (): void => {
+  document.body.addEventListener('keydown', onKeyPress);
   drawMap(map);
+  ctxG.drawImage(heroDown, 0, 0);
 };

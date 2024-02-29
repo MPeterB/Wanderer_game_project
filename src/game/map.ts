@@ -1,7 +1,8 @@
-import { ctx } from './main.ts';
+const canvasBg = document.querySelector('.background-canvas') as HTMLCanvasElement;
+export const ctxBg = canvasBg.getContext('2d') as CanvasRenderingContext2D;
 
 const floor = document.getElementById('floor') as HTMLImageElement;
-const wall = document.getElementById('wall') as HTMLImageElement;
+export const wall = document.getElementById('wall') as HTMLImageElement;
 
 export const map: HTMLImageElement[][] = [
   [floor, floor, floor, wall, floor, floor, floor, floor, floor, floor],
@@ -19,7 +20,7 @@ export const map: HTMLImageElement[][] = [
 export function drawMap(map: HTMLImageElement[][]): void {
   for (let i: number = 0; i < map.length; i++) {
     for (let j: number = 0; j < map[i].length; j++) {
-      ctx.drawImage(map[i][j], j * 71, i * 71);
+      ctxBg.drawImage(map[i][j], j * 71, i * 71);
     }
   }
 }
