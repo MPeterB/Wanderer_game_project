@@ -1,4 +1,4 @@
-import { ctx } from './main.ts';
+import { ctx } from '../main.ts';
 
 const floor = document.getElementById('floor') as HTMLImageElement;
 const wall = document.getElementById('wall') as HTMLImageElement;
