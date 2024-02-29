@@ -1,8 +1,8 @@
 import { CharacterPosition } from '../main.ts';
 import { map, wall } from './map.ts';
 
-export const canvasG = document.querySelector('.game-canvas') as HTMLCanvasElement;
-export const ctxG = canvasG.getContext('2d') as CanvasRenderingContext2D;
+const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
+export const ctxH = canvasH.getContext('2d') as CanvasRenderingContext2D;
 
 export const heroDown = document.getElementById('hero-down') as HTMLImageElement;
 const heroUp = document.getElementById('hero-up') as HTMLImageElement;
@@ -22,53 +22,53 @@ const heroCurrentY: CharacterPosition = {
 export function onKeyPress(event: KeyboardEvent): void {
   switch (event.key) {
     case 'ArrowDown':
-      ctxG.clearRect(0, 0, canvasG.width, canvasG.height);
+      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
-        heroCurrentY.pixel === canvasG.height - 71 ||
+        heroCurrentY.pixel === canvasH.height - 71 ||
         map[heroCurrentY.position + 1][heroCurrentX.position] === wall
       ) {
-        ctxG.drawImage(heroDown, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroDown, heroCurrentX.pixel, heroCurrentY.pixel);
       } else {
-        ctxG.drawImage(heroDown, heroCurrentX.pixel, heroCurrentY.pixel + 71);
+        ctxH.drawImage(heroDown, heroCurrentX.pixel, heroCurrentY.pixel + 71);
         heroCurrentY.pixel += 71;
         heroCurrentY.position += 1;
       }
       break;
     case 'ArrowUp':
-      ctxG.clearRect(0, 0, canvasG.width, canvasG.height);
+      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
         heroCurrentY.pixel === 0 ||
         map[heroCurrentY.position - 1][heroCurrentX.position] === wall
       ) {
-        ctxG.drawImage(heroUp, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroUp, heroCurrentX.pixel, heroCurrentY.pixel);
       } else {
-        ctxG.drawImage(heroUp, heroCurrentX.pixel, heroCurrentY.pixel - 71);
+        ctxH.drawImage(heroUp, heroCurrentX.pixel, heroCurrentY.pixel - 71);
         heroCurrentY.pixel -= 71;
         heroCurrentY.position -= 1;
       }
       break;
     case 'ArrowRight':
-      ctxG.clearRect(0, 0, canvasG.width, canvasG.height);
+      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
-        heroCurrentX.pixel === canvasG.width - 71 ||
+        heroCurrentX.pixel === canvasH.width - 71 ||
         map[heroCurrentY.position][heroCurrentX.position + 1] === wall
       ) {
-        ctxG.drawImage(heroRight, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroRight, heroCurrentX.pixel, heroCurrentY.pixel);
       } else {
-        ctxG.drawImage(heroRight, heroCurrentX.pixel + 71, heroCurrentY.pixel);
+        ctxH.drawImage(heroRight, heroCurrentX.pixel + 71, heroCurrentY.pixel);
         heroCurrentX.pixel += 71;
         heroCurrentX.position += 1;
       }
       break;
     case 'ArrowLeft':
-      ctxG.clearRect(0, 0, canvasG.width, canvasG.height);
+      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
         heroCurrentX.pixel === 0 ||
         map[heroCurrentY.position][heroCurrentX.position - 1] === wall
       ) {
-        ctxG.drawImage(heroLeft, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroLeft, heroCurrentX.pixel, heroCurrentY.pixel);
       } else {
-        ctxG.drawImage(heroLeft, heroCurrentX.pixel - 71, heroCurrentY.pixel);
+        ctxH.drawImage(heroLeft, heroCurrentX.pixel - 71, heroCurrentY.pixel);
         heroCurrentX.pixel -= 71;
         heroCurrentX.position -= 1;
       }

@@ -1,6 +1,6 @@
 import './style.css';
 import { drawMap, map } from './game/map.ts';
-import { ctxG, onKeyPress, heroDown } from './game/hero.ts';
+import { ctxH, onKeyPress, heroDown } from './game/hero.ts';
 
 export type CharacterPosition = {
   pixel: number;
@@ -10,5 +10,5 @@ export type CharacterPosition = {
 window.onload = (): void => {
   document.body.addEventListener('keydown', onKeyPress);
   drawMap(map);
-  ctxG.drawImage(heroDown, 0, 0);
+  ctxH.drawImage(heroDown, 0, 0);
 };
