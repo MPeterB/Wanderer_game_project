@@ -9,14 +9,11 @@ const heroUp = document.getElementById('hero-up') as HTMLImageElement;
 const heroRight = document.getElementById('hero-right') as HTMLImageElement;
 const heroLeft = document.getElementById('hero-left') as HTMLImageElement;
 
-const heroCurrentX: CharacterPosition = {
-  pixel: 0,
-  position: 0,
-};
-
-const heroCurrentY: CharacterPosition = {
-  pixel: 0,
-  position: 0,
+const heroCurrent: CharacterPosition = {
+  pixelX: 0,
+  pixelY: 0,
+  positionX: 0,
+  positionY: 0,
 };
 
 export function onKeyPress(event: KeyboardEvent): void {
@@ -24,53 +21,53 @@ export function onKeyPress(event: KeyboardEvent): void {
     case 'ArrowDown':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
-        heroCurrentY.pixel === canvasH.height - 71 ||
-        map[heroCurrentY.position + 1][heroCurrentX.position] === wall
+        heroCurrent.pixelY === canvasH.height - 71 ||
+        map[heroCurrent.positionY + 1][heroCurrent.positionX] === wall
       ) {
-        ctxH.drawImage(heroDown, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
-        ctxH.drawImage(heroDown, heroCurrentX.pixel, heroCurrentY.pixel + 71);
-        heroCurrentY.pixel += 71;
-        heroCurrentY.position += 1;
+        ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY + 71);
+        heroCurrent.pixelY += 71;
+        heroCurrent.positionY += 1;
       }
       break;
     case 'ArrowUp':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
-        heroCurrentY.pixel === 0 ||
-        map[heroCurrentY.position - 1][heroCurrentX.position] === wall
+        heroCurrent.pixelY === 0 ||
+        map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall
       ) {
-        ctxH.drawImage(heroUp, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
-        ctxH.drawImage(heroUp, heroCurrentX.pixel, heroCurrentY.pixel - 71);
-        heroCurrentY.pixel -= 71;
-        heroCurrentY.position -= 1;
+        ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY - 71);
+        heroCurrent.pixelY -= 71;
+        heroCurrent.positionY -= 1;
       }
       break;
     case 'ArrowRight':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
-        heroCurrentX.pixel === canvasH.width - 71 ||
-        map[heroCurrentY.position][heroCurrentX.position + 1] === wall
+        heroCurrent.pixelX === canvasH.width - 71 ||
+        map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall
       ) {
-        ctxH.drawImage(heroRight, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroRight, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
-        ctxH.drawImage(heroRight, heroCurrentX.pixel + 71, heroCurrentY.pixel);
-        heroCurrentX.pixel += 71;
-        heroCurrentX.position += 1;
+        ctxH.drawImage(heroRight, heroCurrent.pixelX + 71, heroCurrent.pixelY);
+        heroCurrent.pixelX += 71;
+        heroCurrent.positionX += 1;
       }
       break;
     case 'ArrowLeft':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
-        heroCurrentX.pixel === 0 ||
-        map[heroCurrentY.position][heroCurrentX.position - 1] === wall
+        heroCurrent.pixelX === 0 ||
+        map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall
       ) {
-        ctxH.drawImage(heroLeft, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroLeft, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
-        ctxH.drawImage(heroLeft, heroCurrentX.pixel - 71, heroCurrentY.pixel);
-        heroCurrentX.pixel -= 71;
-        heroCurrentX.position -= 1;
+        ctxH.drawImage(heroLeft, heroCurrent.pixelX - 71, heroCurrent.pixelY);
+        heroCurrent.pixelX -= 71;
+        heroCurrent.positionX -= 1;
       }
       break;
     default:
