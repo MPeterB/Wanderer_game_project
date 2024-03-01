@@ -1,4 +1,4 @@
-import { CharacterPosition } from '../main.ts';
+import { heroCurrent } from './characterPositions.ts';
 import { map, wall } from './map.ts';
 
 const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
@@ -8,13 +8,6 @@ export const heroDown = document.getElementById('hero-down') as HTMLImageElement
 const heroUp = document.getElementById('hero-up') as HTMLImageElement;
 const heroRight = document.getElementById('hero-right') as HTMLImageElement;
 const heroLeft = document.getElementById('hero-left') as HTMLImageElement;
-
-const heroCurrent: CharacterPosition = {
-  pixelX: 0,
-  pixelY: 0,
-  positionX: 0,
-  positionY: 0,
-};
 
 export function onKeyPress(event: KeyboardEvent): void {
   switch (event.key) {
