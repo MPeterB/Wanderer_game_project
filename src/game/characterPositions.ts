@@ -1,4 +1,4 @@
-type CharacterPosition = {
+export type CharacterPosition = {
   pixelX: number;
   pixelY: number;
   positionX: number;
