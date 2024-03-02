@@ -59,8 +59,6 @@ export function drawEnemy(
   characterPosition.pixelY = evaluatedPosition.pixelY;
   characterPosition.positionX = evaluatedPosition.positionX;
   characterPosition.positionY = evaluatedPosition.positionY;
-  console.log(characterPosition);
-  console.log('skeleton1' + skeleton1Current)
   ctxE.drawImage(enemyImage, characterPosition.pixelX, characterPosition.pixelY);
 }
 
