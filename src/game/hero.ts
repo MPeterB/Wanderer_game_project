@@ -10,8 +10,9 @@ const heroRight = document.getElementById('hero-right') as HTMLImageElement;
 const heroLeft = document.getElementById('hero-left') as HTMLImageElement;
 
 export function onKeyPress(event: KeyboardEvent): void {
-  switch (event.key) {
+  switch (event.code) {
     case 'ArrowDown':
+    case 'KeyS':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
         heroCurrent.pixelY === canvasH.height - 71 ||
@@ -25,6 +26,7 @@ export function onKeyPress(event: KeyboardEvent): void {
       }
       break;
     case 'ArrowUp':
+    case 'KeyW':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
         heroCurrent.pixelY === 0 ||
@@ -38,6 +40,7 @@ export function onKeyPress(event: KeyboardEvent): void {
       }
       break;
     case 'ArrowRight':
+    case 'KeyD':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
         heroCurrent.pixelX === canvasH.width - 71 ||
@@ -51,6 +54,7 @@ export function onKeyPress(event: KeyboardEvent): void {
       }
       break;
     case 'ArrowLeft':
+    case 'KeyA':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
       if (
         heroCurrent.pixelX === 0 ||
@@ -64,6 +68,6 @@ export function onKeyPress(event: KeyboardEvent): void {
       }
       break;
     default:
-      throw new Error('To start playing the game press any of the arrow buttons on your keyboard!');
+      throw new Error('Only arrow buttons and WASD are acceptable to move your hero!');
   }
 }
