@@ -1,5 +1,6 @@
 import { heroCurrent } from './characterPositions.ts';
 import { map, wall } from './map.ts';
+import { gameProgress, startGame } from './game.ts';
 
 const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
 export const ctxH = canvasH.getContext('2d') as CanvasRenderingContext2D;
@@ -9,11 +10,15 @@ const heroUp = document.getElementById('hero-up') as HTMLImageElement;
 const heroRight = document.getElementById('hero-right') as HTMLImageElement;
 const heroLeft = document.getElementById('hero-left') as HTMLImageElement;
 
-export function onKeyPress(event: KeyboardEvent): void {
+export function onKeyPressHero(event: KeyboardEvent): void {
   switch (event.code) {
     case 'ArrowDown':
     case 'KeyS':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      if (gameProgress.inProgress === false) {
+        startGame();
+        gameProgress.inProgress = true;
+      }
       if (
         heroCurrent.pixelY === canvasH.height - 71 ||
         map[heroCurrent.positionY + 1][heroCurrent.positionX] === wall
@@ -28,6 +33,10 @@ export function onKeyPress(event: KeyboardEvent): void {
     case 'ArrowUp':
     case 'KeyW':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      if (gameProgress.inProgress === false) {
+        startGame();
+        gameProgress.inProgress = true;
+      }
       if (
         heroCurrent.pixelY === 0 ||
         map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall
@@ -42,6 +51,10 @@ export function onKeyPress(event: KeyboardEvent): void {
     case 'ArrowRight':
     case 'KeyD':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      if (gameProgress.inProgress === false) {
+        startGame();
+        gameProgress.inProgress = true;
+      }
       if (
         heroCurrent.pixelX === canvasH.width - 71 ||
         map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall
@@ -56,6 +69,10 @@ export function onKeyPress(event: KeyboardEvent): void {
     case 'ArrowLeft':
     case 'KeyA':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      if (gameProgress.inProgress === false) {
+        startGame();
+        gameProgress.inProgress = true;
+      }
       if (
         heroCurrent.pixelX === 0 ||
         map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall

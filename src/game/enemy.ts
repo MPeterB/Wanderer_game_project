@@ -1,4 +1,10 @@
-import { CharacterPosition , skeleton1Current, skeleton2Current, skeleton3Current, bossCurrent } from './characterPositions.ts';
+import {
+  CharacterPosition,
+  skeleton1Current,
+  skeleton2Current,
+  skeleton3Current,
+  bossCurrent,
+} from './characterPositions.ts';
 import { map, wall } from './map.ts';
 
 const canvasE = document.querySelector('.enemy-canvas') as HTMLCanvasElement;
@@ -6,13 +12,6 @@ const ctxE = canvasE.getContext('2d') as CanvasRenderingContext2D;
 
 export const skeleton = document.getElementById('skeleton') as HTMLImageElement;
 export const boss = document.getElementById('boss') as HTMLImageElement;
-
-export function drawEnemies(): void {
-  drawEnemy(skeleton, skeleton1Current);
-  drawEnemy(skeleton, skeleton2Current);
-  drawEnemy(skeleton, skeleton3Current);
-  drawEnemy(boss, bossCurrent);
-}
 
 function randomNumberMinMax(min: number, max: number) {
   const minCeiled = Math.ceil(min);
@@ -52,7 +51,7 @@ export function drawEnemy(
     pixelY: number;
     positionX: number;
     positionY: number;
-  }
+  },
 ): void {
   const evaluatedPosition = evaluatePosition();
   characterPosition.pixelX = evaluatedPosition.pixelX;
@@ -62,18 +61,15 @@ export function drawEnemy(
   ctxE.drawImage(enemyImage, characterPosition.pixelX, characterPosition.pixelY);
 }
 
+export function drawEnemies(): void {
+  drawEnemy(skeleton, skeleton1Current);
+  drawEnemy(skeleton, skeleton2Current);
+  drawEnemy(skeleton, skeleton3Current);
+  drawEnemy(boss, bossCurrent);
+}
+
 const directions: string[] = ['down', 'up', 'right', 'left'];
 const seconds: number = 1;
-
-export function moveEnemies(): void {
-  setInterval(() => {
-    ctxE.clearRect(0, 0, canvasE.width, canvasE.height);
-    moveEnemy(skeleton, skeleton1Current);
-    moveEnemy(skeleton, skeleton2Current);
-    moveEnemy(skeleton, skeleton3Current);
-    moveEnemy(boss, bossCurrent);
-  }, seconds * 1000);
-}
 
 function randomNumberMax(max: number): number {
   return Math.floor(Math.random() * max);
@@ -135,15 +131,15 @@ export function evaluateDirection(
         if (
           characterPosition.pixelX === 0 ||
           map[characterPosition.positionY][characterPosition.positionX - 1] === wall
-          ) {
-            tileWalkable = false;
-          } else {
-            tileWalkable = true;
-            evaluatedDirection = chosenDirection;
-          }
-          break;
-          default:
-            throw new Error();
+        ) {
+          tileWalkable = false;
+        } else {
+          tileWalkable = true;
+          evaluatedDirection = chosenDirection;
+        }
+        break;
+      default:
+        throw new Error();
     }
   }
   return evaluatedDirection;
@@ -156,31 +152,40 @@ export function moveEnemy(
     pixelY: number;
     positionX: number;
     positionY: number;
-  }
-  ): void {
-
+  },
+): void {
   switch (evaluateDirection(characterPosition)) {
     case 'down':
-      ctxE.drawImage(enemyImage, characterPosition.pixelX, characterPosition.pixelY + 71)
+      ctxE.drawImage(enemyImage, characterPosition.pixelX, characterPosition.pixelY + 71);
       characterPosition.pixelY += 71;
       characterPosition.positionY += 1;
       break;
     case 'up':
-      ctxE.drawImage(enemyImage, characterPosition.pixelX, characterPosition.pixelY - 71)
+      ctxE.drawImage(enemyImage, characterPosition.pixelX, characterPosition.pixelY - 71);
       characterPosition.pixelY -= 71;
       characterPosition.positionY -= 1;
       break;
     case 'right':
-      ctxE.drawImage(enemyImage, characterPosition.pixelX + 71, characterPosition.pixelY)
+      ctxE.drawImage(enemyImage, characterPosition.pixelX + 71, characterPosition.pixelY);
       characterPosition.pixelX += 71;
       characterPosition.positionX += 1;
       break;
     case 'left':
-      ctxE.drawImage(enemyImage, characterPosition.pixelX - 71, characterPosition.pixelY)
+      ctxE.drawImage(enemyImage, characterPosition.pixelX - 71, characterPosition.pixelY);
       characterPosition.pixelX -= 71;
       characterPosition.positionX -= 1;
       break;
     default:
       throw new Error();
   }
+}
+
+export function moveEnemies(): void {
+  setInterval(() => {
+    ctxE.clearRect(0, 0, canvasE.width, canvasE.height);
+    moveEnemy(skeleton, skeleton1Current);
+    moveEnemy(skeleton, skeleton2Current);
+    moveEnemy(skeleton, skeleton3Current);
+    moveEnemy(boss, bossCurrent);
+  }, seconds * 1000);
 }
