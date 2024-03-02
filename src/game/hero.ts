@@ -1,79 +1,90 @@
-import { CharacterPosition } from '../main.ts';
+import { heroCurrent } from './characterPositions.ts';
 import { map, wall } from './map.ts';
+import { gameProgress, startGame } from './game.ts';
 
-export const canvasG = document.querySelector('.game-canvas') as HTMLCanvasElement;
-export const ctxG = canvasG.getContext('2d') as CanvasRenderingContext2D;
+const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
+export const ctxH = canvasH.getContext('2d') as CanvasRenderingContext2D;
 
 export const heroDown = document.getElementById('hero-down') as HTMLImageElement;
 const heroUp = document.getElementById('hero-up') as HTMLImageElement;
 const heroRight = document.getElementById('hero-right') as HTMLImageElement;
 const heroLeft = document.getElementById('hero-left') as HTMLImageElement;
 
-const heroCurrentX: CharacterPosition = {
-  pixel: 0,
-  position: 0,
-};
-
-const heroCurrentY: CharacterPosition = {
-  pixel: 0,
-  position: 0,
-};
-
-export function onKeyPress(event: KeyboardEvent): void {
-  switch (event.key) {
+export function onKeyPressHero(event: KeyboardEvent): void {
+  switch (event.code) {
     case 'ArrowDown':
-      ctxG.clearRect(0, 0, canvasG.width, canvasG.height);
+    case 'KeyS':
+      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      if (gameProgress.inProgress === false) {
+        startGame();
+        gameProgress.inProgress = true;
+      }
       if (
-        heroCurrentY.pixel === canvasG.height - 71 ||
-        map[heroCurrentY.position + 1][heroCurrentX.position] === wall
+        heroCurrent.pixelY === canvasH.height - 71 ||
+        map[heroCurrent.positionY + 1][heroCurrent.positionX] === wall
       ) {
-        ctxG.drawImage(heroDown, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
-        ctxG.drawImage(heroDown, heroCurrentX.pixel, heroCurrentY.pixel + 71);
-        heroCurrentY.pixel += 71;
-        heroCurrentY.position += 1;
+        ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY + 71);
+        heroCurrent.pixelY += 71;
+        heroCurrent.positionY += 1;
       }
       break;
     case 'ArrowUp':
-      ctxG.clearRect(0, 0, canvasG.width, canvasG.height);
+    case 'KeyW':
+      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      if (gameProgress.inProgress === false) {
+        startGame();
+        gameProgress.inProgress = true;
+      }
       if (
-        heroCurrentY.pixel === 0 ||
-        map[heroCurrentY.position - 1][heroCurrentX.position] === wall
+        heroCurrent.pixelY === 0 ||
+        map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall
       ) {
-        ctxG.drawImage(heroUp, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
-        ctxG.drawImage(heroUp, heroCurrentX.pixel, heroCurrentY.pixel - 71);
-        heroCurrentY.pixel -= 71;
-        heroCurrentY.position -= 1;
+        ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY - 71);
+        heroCurrent.pixelY -= 71;
+        heroCurrent.positionY -= 1;
       }
       break;
     case 'ArrowRight':
-      ctxG.clearRect(0, 0, canvasG.width, canvasG.height);
+    case 'KeyD':
+      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      if (gameProgress.inProgress === false) {
+        startGame();
+        gameProgress.inProgress = true;
+      }
       if (
-        heroCurrentX.pixel === canvasG.width - 71 ||
-        map[heroCurrentY.position][heroCurrentX.position + 1] === wall
+        heroCurrent.pixelX === canvasH.width - 71 ||
+        map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall
       ) {
-        ctxG.drawImage(heroRight, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroRight, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
-        ctxG.drawImage(heroRight, heroCurrentX.pixel + 71, heroCurrentY.pixel);
-        heroCurrentX.pixel += 71;
-        heroCurrentX.position += 1;
+        ctxH.drawImage(heroRight, heroCurrent.pixelX + 71, heroCurrent.pixelY);
+        heroCurrent.pixelX += 71;
+        heroCurrent.positionX += 1;
       }
       break;
     case 'ArrowLeft':
-      ctxG.clearRect(0, 0, canvasG.width, canvasG.height);
+    case 'KeyA':
+      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      if (gameProgress.inProgress === false) {
+        startGame();
+        gameProgress.inProgress = true;
+      }
       if (
-        heroCurrentX.pixel === 0 ||
-        map[heroCurrentY.position][heroCurrentX.position - 1] === wall
+        heroCurrent.pixelX === 0 ||
+        map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall
       ) {
-        ctxG.drawImage(heroLeft, heroCurrentX.pixel, heroCurrentY.pixel);
+        ctxH.drawImage(heroLeft, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
-        ctxG.drawImage(heroLeft, heroCurrentX.pixel - 71, heroCurrentY.pixel);
-        heroCurrentX.pixel -= 71;
-        heroCurrentX.position -= 1;
+        ctxH.drawImage(heroLeft, heroCurrent.pixelX - 71, heroCurrent.pixelY);
+        heroCurrent.pixelX -= 71;
+        heroCurrent.positionX -= 1;
       }
       break;
     default:
-      throw new Error('To start playing the game press any of the arrow buttons on your keyboard!');
+      throw new Error('Only arrow buttons and WASD are acceptable to move your hero!');
   }
 }
