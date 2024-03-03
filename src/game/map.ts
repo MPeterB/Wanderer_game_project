@@ -1,20 +1,19 @@
+import { wall, floor } from "./tiles";
+
 const canvasM = document.querySelector('.map-canvas') as HTMLCanvasElement;
 const ctxM = canvasM.getContext('2d') as CanvasRenderingContext2D;
 
-const floor = document.getElementById('floor') as HTMLImageElement;
-export const wall = document.getElementById('wall') as HTMLImageElement;
-
 export const map: HTMLImageElement[][] = [
-  [floor, floor, floor, wall, floor, floor, floor, floor, floor, floor],
-  [floor, floor, floor, wall, floor, wall, floor, wall, wall, floor],
-  [floor, wall, wall, wall, floor, wall, floor, wall, wall, floor],
-  [floor, floor, floor, floor, floor, wall, floor, floor, floor, floor],
-  [wall, wall, wall, wall, floor, wall, wall, wall, wall, floor],
-  [floor, wall, floor, wall, floor, floor, floor, floor, floor, floor],
-  [floor, wall, floor, wall, floor, wall, wall, floor, wall, floor],
-  [floor, floor, floor, floor, floor, wall, wall, floor, wall, floor],
-  [floor, wall, wall, wall, floor, floor, floor, floor, wall, floor],
-  [floor, floor, floor, wall, floor, wall, wall, floor, floor, floor],
+  [floor.image, floor.image, floor.image, wall.image, floor.image, floor.image, floor.image, floor.image, floor.image, floor.image],
+  [floor.image, floor.image, floor.image, wall.image, floor.image, wall.image, floor.image, wall.image, wall.image, floor.image],
+  [floor.image, wall.image, wall.image, wall.image, floor.image, wall.image, floor.image, wall.image, wall.image, floor.image],
+  [floor.image, floor.image, floor.image, floor.image, floor.image, wall.image, floor.image, floor.image, floor.image, floor.image],
+  [wall.image, wall.image, wall.image, wall.image, floor.image, wall.image, wall.image, wall.image, wall.image, floor.image],
+  [floor.image, wall.image, floor.image, wall.image, floor.image, floor.image, floor.image, floor.image, floor.image, floor.image],
+  [floor.image, wall.image, floor.image, wall.image, floor.image, wall.image, wall.image, floor.image, wall.image, floor.image],
+  [floor.image, floor.image, floor.image, floor.image, floor.image, wall.image, wall.image, floor.image, wall.image, floor.image],
+  [floor.image, wall.image, wall.image, wall.image, floor.image, floor.image, floor.image, floor.image, wall.image, floor.image],
+  [floor.image, floor.image, floor.image, wall.image, floor.image, wall.image, wall.image, floor.image, floor.image, floor.image],
 ];
 
 export function drawMap(map: HTMLImageElement[][]): void {

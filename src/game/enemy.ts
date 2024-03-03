@@ -5,7 +5,8 @@ import {
   skeleton3Current,
   bossCurrent,
 } from './characterPositions.ts';
-import { map, wall } from './map.ts';
+import { map } from './map.ts';
+import { wall } from './tiles.ts';
 
 const canvasE = document.querySelector('.enemy-canvas') as HTMLCanvasElement;
 const ctxE = canvasE.getContext('2d') as CanvasRenderingContext2D;
@@ -34,7 +35,7 @@ export function evaluatePosition(): CharacterPosition {
 
   while (tileSpawnable === false) {
     const positionToEvaluate = randomPosition();
-    if (map[positionToEvaluate.positionY][positionToEvaluate.positionX] === wall) {
+    if (map[positionToEvaluate.positionY][positionToEvaluate.positionX] === wall.image) {
       tileSpawnable = false;
     } else {
       tileSpawnable = true;
@@ -97,7 +98,7 @@ export function evaluateDirection(
       case 'down':
         if (
           characterPosition.pixelY === canvasE.height - 71 ||
-          map[characterPosition.positionY + 1][characterPosition.positionX] === wall
+          map[characterPosition.positionY + 1][characterPosition.positionX] === wall.image
         ) {
           tileWalkable = false;
         } else {
@@ -108,7 +109,7 @@ export function evaluateDirection(
       case 'up':
         if (
           characterPosition.pixelY === 0 ||
-          map[characterPosition.positionY - 1][characterPosition.positionX] === wall
+          map[characterPosition.positionY - 1][characterPosition.positionX] === wall.image
         ) {
           tileWalkable = false;
         } else {
@@ -119,7 +120,7 @@ export function evaluateDirection(
       case 'right':
         if (
           characterPosition.pixelX === canvasE.width - 71 ||
-          map[characterPosition.positionY][characterPosition.positionX + 1] === wall
+          map[characterPosition.positionY][characterPosition.positionX + 1] === wall.image
         ) {
           tileWalkable = false;
         } else {
@@ -130,7 +131,7 @@ export function evaluateDirection(
       case 'left':
         if (
           characterPosition.pixelX === 0 ||
-          map[characterPosition.positionY][characterPosition.positionX - 1] === wall
+          map[characterPosition.positionY][characterPosition.positionX - 1] === wall.image
         ) {
           tileWalkable = false;
         } else {
