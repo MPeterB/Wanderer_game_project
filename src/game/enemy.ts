@@ -25,9 +25,9 @@ const seconds: number = 1;
 export function moveEnemies(): void {
   setInterval(() => {
     ctxE.clearRect(0, 0, canvasE.width, canvasE.height);
-    moveEnemy(skeleton, skeleton1Current);
-    moveEnemy(skeleton, skeleton2Current);
-    moveEnemy(skeleton, skeleton3Current);
-    moveEnemy(boss, bossCurrent);
+    moveEnemy(skeleton, skeleton1Current, skeleton2Current, skeleton3Current, bossCurrent);
+    moveEnemy(skeleton, skeleton2Current, skeleton1Current, skeleton3Current, bossCurrent);
+    moveEnemy(skeleton, skeleton3Current, skeleton1Current, skeleton2Current, bossCurrent);
+    moveEnemy(boss, bossCurrent, skeleton1Current, skeleton2Current, skeleton3Current);
   }, seconds * 1000);
 }
