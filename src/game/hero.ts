@@ -1,4 +1,4 @@
-import { heroCurrent } from './characterPositions.ts';
+import { heroCurrent } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { gameProgress, startGame } from './game.ts';

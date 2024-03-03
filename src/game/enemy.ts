@@ -3,7 +3,7 @@ import {
   skeleton2Current,
   skeleton3Current,
   bossCurrent,
-} from './characterPositions.ts';
+} from './characters.ts';
 import { drawEnemy } from './enemySpawn.ts';
 import { moveEnemy } from './enemyMovement.ts';
 
