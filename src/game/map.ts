@@ -1,4 +1,4 @@
-import { tile, wall, floor } from "./tiles";
+import { tile, wall, floor } from './tiles.ts';
 
 const canvasM = document.querySelector('.map-canvas') as HTMLCanvasElement;
 const ctxM = canvasM.getContext('2d') as CanvasRenderingContext2D;

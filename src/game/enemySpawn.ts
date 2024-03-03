@@ -1,4 +1,4 @@
-import { ctxE } from './enemy';
+import { ctxE } from './enemy.ts';
 import { CharacterPosition } from './characterPositions.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
@@ -21,7 +21,7 @@ export function randomPosition(): CharacterPosition {
 export function evaluatePosition(
   otherEnemyPosition1: CharacterPosition,
   otherEnemyPosition2: CharacterPosition,
-  otherEnemyPosition3: CharacterPosition
+  otherEnemyPosition3: CharacterPosition,
 ): CharacterPosition {
   let tileSpawnable: boolean = false;
   let evaluatedPosition = {} as CharacterPosition;
@@ -30,9 +30,12 @@ export function evaluatePosition(
     const positionToEvaluate = randomPosition();
     if (
       map[positionToEvaluate.positionY][positionToEvaluate.positionX] === wall ||
-      (positionToEvaluate.positionX === otherEnemyPosition1.positionX && positionToEvaluate.positionY === otherEnemyPosition1.positionY) ||
-      (positionToEvaluate.positionX === otherEnemyPosition2.positionX && positionToEvaluate.positionY === otherEnemyPosition2.positionY) ||
-      (positionToEvaluate.positionX === otherEnemyPosition3.positionX && positionToEvaluate.positionY === otherEnemyPosition3.positionY)
+      (positionToEvaluate.positionX === otherEnemyPosition1.positionX &&
+        positionToEvaluate.positionY === otherEnemyPosition1.positionY) ||
+      (positionToEvaluate.positionX === otherEnemyPosition2.positionX &&
+        positionToEvaluate.positionY === otherEnemyPosition2.positionY) ||
+      (positionToEvaluate.positionX === otherEnemyPosition3.positionX &&
+        positionToEvaluate.positionY === otherEnemyPosition3.positionY)
     ) {
       tileSpawnable = false;
     } else {
