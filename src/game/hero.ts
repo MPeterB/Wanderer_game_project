@@ -1,5 +1,6 @@
 import { heroCurrent } from './characterPositions.ts';
-import { map, wall } from './map.ts';
+import { map } from './map.ts';
+import { wall } from './tiles.ts';
 import { gameProgress, startGame } from './game.ts';
 
 const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
@@ -37,10 +38,7 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         startGame();
         gameProgress.inProgress = true;
       }
-      if (
-        heroCurrent.pixelY === 0 ||
-        map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall
-      ) {
+      if (heroCurrent.pixelY === 0 || map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall) {
         ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
         ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY - 71);
@@ -55,10 +53,7 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         startGame();
         gameProgress.inProgress = true;
       }
-      if (
-        heroCurrent.pixelX === canvasH.width - 71 ||
-        map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall
-      ) {
+      if (heroCurrent.pixelX === canvasH.width - 71 || map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall) {
         ctxH.drawImage(heroRight, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
         ctxH.drawImage(heroRight, heroCurrent.pixelX + 71, heroCurrent.pixelY);
@@ -73,10 +68,7 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         startGame();
         gameProgress.inProgress = true;
       }
-      if (
-        heroCurrent.pixelX === 0 ||
-        map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall
-      ) {
+      if (heroCurrent.pixelX === 0 || map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall) {
         ctxH.drawImage(heroLeft, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
         ctxH.drawImage(heroLeft, heroCurrent.pixelX - 71, heroCurrent.pixelY);
