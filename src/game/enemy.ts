@@ -14,10 +14,10 @@ export const skeleton = document.getElementById('skeleton') as HTMLImageElement;
 export const boss = document.getElementById('boss') as HTMLImageElement;
 
 export function drawEnemies(): void {
-  drawEnemy(skeleton, skeleton1Current);
-  drawEnemy(skeleton, skeleton2Current);
-  drawEnemy(skeleton, skeleton3Current);
-  drawEnemy(boss, bossCurrent);
+  drawEnemy(skeleton, skeleton1Current, skeleton2Current, skeleton3Current, bossCurrent);
+  drawEnemy(skeleton, skeleton2Current, skeleton1Current, skeleton3Current, bossCurrent);
+  drawEnemy(skeleton, skeleton3Current, skeleton1Current, skeleton2Current, bossCurrent);
+  drawEnemy(boss, bossCurrent, skeleton1Current, skeleton2Current, skeleton3Current);
 }
 
 const seconds: number = 1;

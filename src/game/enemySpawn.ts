@@ -18,13 +18,22 @@ export function randomPosition(): CharacterPosition {
   return characterPosition;
 }
 
-export function evaluatePosition(): CharacterPosition {
+export function evaluatePosition(
+  otherEnemyPosition1: CharacterPosition,
+  otherEnemyPosition2: CharacterPosition,
+  otherEnemyPosition3: CharacterPosition
+): CharacterPosition {
   let tileSpawnable: boolean = false;
   let evaluatedPosition = {} as CharacterPosition;
 
   while (tileSpawnable === false) {
     const positionToEvaluate = randomPosition();
-    if (map[positionToEvaluate.positionY][positionToEvaluate.positionX] === wall) {
+    if (
+      map[positionToEvaluate.positionY][positionToEvaluate.positionX] === wall ||
+      (positionToEvaluate.positionX === otherEnemyPosition1.positionX && positionToEvaluate.positionY === otherEnemyPosition1.positionY) ||
+      (positionToEvaluate.positionX === otherEnemyPosition2.positionX && positionToEvaluate.positionY === otherEnemyPosition2.positionY) ||
+      (positionToEvaluate.positionX === otherEnemyPosition3.positionX && positionToEvaluate.positionY === otherEnemyPosition3.positionY)
+    ) {
       tileSpawnable = false;
     } else {
       tileSpawnable = true;
@@ -36,14 +45,12 @@ export function evaluatePosition(): CharacterPosition {
 
 export function drawEnemy(
   enemyImage: HTMLImageElement,
-  characterPosition: {
-    pixelX: number;
-    pixelY: number;
-    positionX: number;
-    positionY: number;
-  },
+  characterPosition: CharacterPosition,
+  otherEnemyPosition1: CharacterPosition,
+  otherEnemyPosition2: CharacterPosition,
+  otherEnemyPosition3: CharacterPosition,
 ): void {
-  const evaluatedPosition = evaluatePosition();
+  const evaluatedPosition = evaluatePosition(otherEnemyPosition1, otherEnemyPosition2, otherEnemyPosition3);
   characterPosition.pixelX = evaluatedPosition.pixelX;
   characterPosition.pixelY = evaluatedPosition.pixelY;
   characterPosition.positionX = evaluatedPosition.positionX;
