@@ -22,7 +22,7 @@ export function onKeyPressHero(event: KeyboardEvent): void {
       }
       if (
         heroCurrent.pixelY === canvasH.height - 71 ||
-        map[heroCurrent.positionY + 1][heroCurrent.positionX] === wall.image
+        map[heroCurrent.positionY + 1][heroCurrent.positionX] === wall
       ) {
         ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
@@ -40,7 +40,7 @@ export function onKeyPressHero(event: KeyboardEvent): void {
       }
       if (
         heroCurrent.pixelY === 0 ||
-        map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall.image
+        map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall
       ) {
         ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
@@ -58,7 +58,7 @@ export function onKeyPressHero(event: KeyboardEvent): void {
       }
       if (
         heroCurrent.pixelX === canvasH.width - 71 ||
-        map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall.image
+        map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall
       ) {
         ctxH.drawImage(heroRight, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {
@@ -76,7 +76,7 @@ export function onKeyPressHero(event: KeyboardEvent): void {
       }
       if (
         heroCurrent.pixelX === 0 ||
-        map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall.image
+        map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall
       ) {
         ctxH.drawImage(heroLeft, heroCurrent.pixelX, heroCurrent.pixelY);
       } else {

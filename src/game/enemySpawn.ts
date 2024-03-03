@@ -24,7 +24,7 @@ export function evaluatePosition(): CharacterPosition {
 
   while (tileSpawnable === false) {
     const positionToEvaluate = randomPosition();
-    if (map[positionToEvaluate.positionY][positionToEvaluate.positionX] === wall.image) {
+    if (map[positionToEvaluate.positionY][positionToEvaluate.positionX] === wall) {
       tileSpawnable = false;
     } else {
       tileSpawnable = true;

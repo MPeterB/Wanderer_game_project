@@ -30,7 +30,7 @@ export function evaluateDirection(
       case 'down':
         if (
           characterPosition.pixelY === canvasE.height - 71 ||
-          map[characterPosition.positionY + 1][characterPosition.positionX] === wall.image
+          map[characterPosition.positionY + 1][characterPosition.positionX] === wall
         ) {
           tileWalkable = false;
         } else {
@@ -41,7 +41,7 @@ export function evaluateDirection(
       case 'up':
         if (
           characterPosition.pixelY === 0 ||
-          map[characterPosition.positionY - 1][characterPosition.positionX] === wall.image
+          map[characterPosition.positionY - 1][characterPosition.positionX] === wall
         ) {
           tileWalkable = false;
         } else {
@@ -52,7 +52,7 @@ export function evaluateDirection(
       case 'right':
         if (
           characterPosition.pixelX === canvasE.width - 71 ||
-          map[characterPosition.positionY][characterPosition.positionX + 1] === wall.image
+          map[characterPosition.positionY][characterPosition.positionX + 1] === wall
         ) {
           tileWalkable = false;
         } else {
@@ -63,7 +63,7 @@ export function evaluateDirection(
       case 'left':
         if (
           characterPosition.pixelX === 0 ||
-          map[characterPosition.positionY][characterPosition.positionX - 1] === wall.image
+          map[characterPosition.positionY][characterPosition.positionX - 1] === wall
         ) {
           tileWalkable = false;
         } else {
