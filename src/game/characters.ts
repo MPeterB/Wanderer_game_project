@@ -7,6 +7,7 @@ const enemy3MaxHealth = 2 * randomNumberMinMax(1, 6);
 const bossMaxHealth = 2 * randomNumberMinMax(1, 6) + randomNumberMinMax(1, 6);
 
 export type Character = {
+  name: string;
   pixelX: number;
   pixelY: number;
   positionX: number;
@@ -19,6 +20,7 @@ export type Character = {
 };
 
 export const heroCurrent: Character = {
+  name: 'Hero',
   pixelX: 0,
   pixelY: 0,
   positionX: 0,
@@ -31,6 +33,7 @@ export const heroCurrent: Character = {
 };
 
 export const skeleton1Current: Character = {
+  name: 'Skeleton',
   pixelX: 300,
   pixelY: 100,
   positionX: 6,
@@ -43,6 +46,7 @@ export const skeleton1Current: Character = {
 };
 
 export const skeleton2Current: Character = {
+  name: 'Skeleton',
   pixelX: 50,
   pixelY: 350,
   positionX: 1,
@@ -55,6 +59,7 @@ export const skeleton2Current: Character = {
 };
 
 export const skeleton3Current: Character = {
+  name: 'Skeleton',
   pixelX: 350,
   pixelY: 400,
   positionX: 7,
@@ -67,6 +72,7 @@ export const skeleton3Current: Character = {
 };
 
 export const bossCurrent: Character = {
+  name: 'Boss',
   pixelX: 200,
   pixelY: 250,
   positionX: 4,
