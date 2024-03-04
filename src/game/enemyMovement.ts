@@ -28,7 +28,7 @@ export function evaluateDirection(
     switch (chosenDirection) {
       case 'down':
         if (
-          enemy.pixelY === canvasE.height - 71 ||
+          enemy.pixelY === canvasE.height - 50 ||
           map[enemy.positionY + 1][enemy.positionX] === wall ||
           (enemy.positionX === otherEnemy1.positionX && enemy.positionY + 1 === otherEnemy1.positionY) ||
           (enemy.positionX === otherEnemy2.positionX && enemy.positionY + 1 === otherEnemy2.positionY) ||
@@ -56,7 +56,7 @@ export function evaluateDirection(
         break;
       case 'right':
         if (
-          enemy.pixelX === canvasE.width - 71 ||
+          enemy.pixelX === canvasE.width - 50 ||
           map[enemy.positionY][enemy.positionX + 1] === wall ||
           (enemy.positionX + 1 === otherEnemy1.positionX && enemy.positionY === otherEnemy1.positionY) ||
           (enemy.positionX + 1 === otherEnemy2.positionX && enemy.positionY === otherEnemy2.positionY) ||
@@ -98,23 +98,23 @@ export function moveEnemy(
 ): void {
   switch (evaluateDirection(enemy, otherEnemy1, otherEnemy2, otherEnemy3)) {
     case 'down':
-      ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY + 71);
-      enemy.pixelY += 71;
+      ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY + 50, 50, 50);
+      enemy.pixelY += 50;
       enemy.positionY += 1;
       break;
     case 'up':
-      ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY - 71);
-      enemy.pixelY -= 71;
+      ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY - 50, 50, 50);
+      enemy.pixelY -= 50;
       enemy.positionY -= 1;
       break;
     case 'right':
-      ctxE.drawImage(enemyImage, enemy.pixelX + 71, enemy.pixelY);
-      enemy.pixelX += 71;
+      ctxE.drawImage(enemyImage, enemy.pixelX + 50, enemy.pixelY, 50, 50);
+      enemy.pixelX += 50;
       enemy.positionX += 1;
       break;
     case 'left':
-      ctxE.drawImage(enemyImage, enemy.pixelX - 71, enemy.pixelY);
-      enemy.pixelX -= 71;
+      ctxE.drawImage(enemyImage, enemy.pixelX - 50, enemy.pixelY, 50, 50);
+      enemy.pixelX -= 50;
       enemy.positionX -= 1;
       break;
     default:

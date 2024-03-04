@@ -19,7 +19,7 @@ export const map: tile[][] = [
 export function drawMap(map: tile[][]): void {
   for (let i: number = 0; i < map.length; i++) {
     for (let j: number = 0; j < map[i].length; j++) {
-      ctxM.drawImage(map[i][j].image, j * 71, i * 71);
+      ctxM.drawImage(map[i][j].image, j * 50, i * 50, 50, 50);
     }
   }
 }

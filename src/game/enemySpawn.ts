@@ -13,8 +13,8 @@ export function randomPosition(): Character {
   const enemy = {} as Character;
   enemy.positionX = randomNumberMinMax(2, 9);
   enemy.positionY = randomNumberMinMax(2, 9);
-  enemy.pixelX = enemy.positionX * 71;
-  enemy.pixelY = enemy.positionY * 71;
+  enemy.pixelX = enemy.positionX * 50;
+  enemy.pixelY = enemy.positionY * 50;
   return enemy;
 }
 
@@ -58,5 +58,5 @@ export function drawEnemy(
   enemy.pixelY = evaluatedPosition.pixelY;
   enemy.positionX = evaluatedPosition.positionX;
   enemy.positionY = evaluatedPosition.positionY;
-  ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY);
+  ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY, 50, 50);
 }

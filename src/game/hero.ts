@@ -21,13 +21,13 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         gameProgress.inProgress = true;
       }
       if (
-        heroCurrent.pixelY === canvasH.height - 71 ||
+        heroCurrent.pixelY === canvasH.height - 50 ||
         map[heroCurrent.positionY + 1][heroCurrent.positionX] === wall
       ) {
-        ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY);
+        ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
       } else {
-        ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY + 71);
-        heroCurrent.pixelY += 71;
+        ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY + 50, 50, 50);
+        heroCurrent.pixelY += 50;
         heroCurrent.positionY += 1;
       }
       break;
@@ -39,10 +39,10 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         gameProgress.inProgress = true;
       }
       if (heroCurrent.pixelY === 0 || map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall) {
-        ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY);
+        ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
       } else {
-        ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY - 71);
-        heroCurrent.pixelY -= 71;
+        ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY - 50, 50, 50);
+        heroCurrent.pixelY -= 50;
         heroCurrent.positionY -= 1;
       }
       break;
@@ -53,11 +53,11 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         startGame();
         gameProgress.inProgress = true;
       }
-      if (heroCurrent.pixelX === canvasH.width - 71 || map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall) {
-        ctxH.drawImage(heroRight, heroCurrent.pixelX, heroCurrent.pixelY);
+      if (heroCurrent.pixelX === canvasH.width - 50 || map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall) {
+        ctxH.drawImage(heroRight, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
       } else {
-        ctxH.drawImage(heroRight, heroCurrent.pixelX + 71, heroCurrent.pixelY);
-        heroCurrent.pixelX += 71;
+        ctxH.drawImage(heroRight, heroCurrent.pixelX + 50, heroCurrent.pixelY, 50, 50);
+        heroCurrent.pixelX += 50;
         heroCurrent.positionX += 1;
       }
       break;
@@ -69,10 +69,10 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         gameProgress.inProgress = true;
       }
       if (heroCurrent.pixelX === 0 || map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall) {
-        ctxH.drawImage(heroLeft, heroCurrent.pixelX, heroCurrent.pixelY);
+        ctxH.drawImage(heroLeft, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
       } else {
-        ctxH.drawImage(heroLeft, heroCurrent.pixelX - 71, heroCurrent.pixelY);
-        heroCurrent.pixelX -= 71;
+        ctxH.drawImage(heroLeft, heroCurrent.pixelX - 50, heroCurrent.pixelY, 50, 50);
+        heroCurrent.pixelX -= 50;
         heroCurrent.positionX -= 1;
       }
       break;

@@ -31,8 +31,8 @@ export const heroCurrent: Character = {
 };
 
 export const skeleton1Current: Character = {
-  pixelX: 426,
-  pixelY: 142,
+  pixelX: 300,
+  pixelY: 100,
   positionX: 6,
   positionY: 2,
   level: 1,
@@ -43,8 +43,8 @@ export const skeleton1Current: Character = {
 };
 
 export const skeleton2Current: Character = {
-  pixelX: 71,
-  pixelY: 497,
+  pixelX: 50,
+  pixelY: 350,
   positionX: 1,
   positionY: 7,
   level: 1,
@@ -55,8 +55,8 @@ export const skeleton2Current: Character = {
 };
 
 export const skeleton3Current: Character = {
-  pixelX: 497,
-  pixelY: 568,
+  pixelX: 350,
+  pixelY: 400,
   positionX: 7,
   positionY: 8,
   level: 1,
@@ -67,8 +67,8 @@ export const skeleton3Current: Character = {
 };
 
 export const bossCurrent: Character = {
-  pixelX: 284,
-  pixelY: 355,
+  pixelX: 200,
+  pixelY: 250,
   positionX: 4,
   positionY: 5,
   level: 1,
