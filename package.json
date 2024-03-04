@@ -1,8 +1,8 @@
 {
-  "name": "wanderer-game-project",
+  "name": "typescript_tile-based_game",
   "private": true,
   "version": "1.0.0",
-  "description": "A tile mab based game written in typescript",
+  "description": "A tile-based game written in typescript",
   "type": "module",
   "scripts": {
     "dev": "vite",
