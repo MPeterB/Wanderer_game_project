@@ -5,7 +5,12 @@ body {
   padding: 0;
 }
 
-.container {
+.preload-images {
+  overflow: hidden;
+  height: 0;
+}
+
+.canvas-container {
   width: 710px;
   height: 710px;
   position: relative;
@@ -32,7 +37,12 @@ canvas {
   z-index: 10;
 }
 
-.preload-images {
-  overflow: hidden;
-  height: 0;
+.stats-container {
+  display: flex;
+  justify-content: center;
+}
+
+.heroStats {
+  display: flex;
+  align-items: baseline;
 }
