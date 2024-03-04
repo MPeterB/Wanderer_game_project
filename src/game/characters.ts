@@ -1,8 +1,21 @@
+import { randomNumberMinMax } from './enemySpawn.ts';
+
+const heroMaxHealth = 20 + 3 * randomNumberMinMax(1, 6);
+const enemy1MaxHealth = 2 * randomNumberMinMax(1, 6);
+const enemy2MaxHealth = 2 * randomNumberMinMax(1, 6);
+const enemy3MaxHealth = 2 * randomNumberMinMax(1, 6);
+const bossMaxHealth = 2 * randomNumberMinMax(1, 6) + randomNumberMinMax(1, 6);
+
 export type Character = {
   pixelX: number;
   pixelY: number;
   positionX: number;
   positionY: number;
+  level: number;
+  maxHealth: number;
+  currentHealth: number;
+  defensePoint: number;
+  strikePoint: number;
 };
 
 export const heroCurrent: Character = {
@@ -10,6 +23,11 @@ export const heroCurrent: Character = {
   pixelY: 0,
   positionX: 0,
   positionY: 0,
+  level: 1,
+  maxHealth: heroMaxHealth,
+  currentHealth: heroMaxHealth,
+  defensePoint: 2 * randomNumberMinMax(1, 6),
+  strikePoint: 5 + randomNumberMinMax(1, 6),
 };
 
 export const skeleton1Current: Character = {
@@ -17,6 +35,11 @@ export const skeleton1Current: Character = {
   pixelY: 142,
   positionX: 6,
   positionY: 2,
+  level: 1,
+  maxHealth: enemy1MaxHealth,
+  currentHealth: enemy1MaxHealth,
+  defensePoint: 0.5 * randomNumberMinMax(1, 6),
+  strikePoint: randomNumberMinMax(1, 6),
 };
 
 export const skeleton2Current: Character = {
@@ -24,6 +47,11 @@ export const skeleton2Current: Character = {
   pixelY: 497,
   positionX: 1,
   positionY: 7,
+  level: 1,
+  maxHealth: enemy2MaxHealth,
+  currentHealth: enemy2MaxHealth,
+  defensePoint: 0.5 * randomNumberMinMax(1, 6),
+  strikePoint: randomNumberMinMax(1, 6),
 };
 
 export const skeleton3Current: Character = {
@@ -31,6 +59,11 @@ export const skeleton3Current: Character = {
   pixelY: 568,
   positionX: 7,
   positionY: 8,
+  level: 1,
+  maxHealth: enemy3MaxHealth,
+  currentHealth: enemy3MaxHealth,
+  defensePoint: 0.5 * randomNumberMinMax(1, 6),
+  strikePoint: randomNumberMinMax(1, 6),
 };
 
 export const bossCurrent: Character = {
@@ -38,4 +71,9 @@ export const bossCurrent: Character = {
   pixelY: 355,
   positionX: 4,
   positionY: 5,
+  level: 1,
+  maxHealth: bossMaxHealth,
+  currentHealth: bossMaxHealth,
+  defensePoint: 0.5 * randomNumberMinMax(1, 6) + randomNumberMinMax(1, 6) / 2,
+  strikePoint: randomNumberMinMax(1, 6) + 1,
 };
