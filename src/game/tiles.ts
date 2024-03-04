@@ -1,14 +1,11 @@
-export type tile = {
+export type Tile = {
   image: HTMLImageElement;
-  occupied: boolean;
 };
 
-export const wall: tile = {
+export const wall: Tile = {
   image: document.getElementById('wall') as HTMLImageElement,
-  occupied: true,
 };
 
-export const floor: tile = {
+export const floor: Tile = {
   image: document.getElementById('floor') as HTMLImageElement,
-  occupied: false,
 };

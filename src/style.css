@@ -5,12 +5,17 @@ body {
   padding: 0;
 }
 
-.container {
-  width: 710px;
-  height: 710px;
+.preload-images {
+  overflow: hidden;
+  height: 0;
+}
+
+.canvas-container {
+  width: 500px;
+  height: 500px;
   position: relative;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 canvas {
@@ -21,7 +26,7 @@ canvas {
 }
 
 .map-canvas {
-  z-index: 1;
+  z-index: 9;
 }
 
 .hero-canvas {
@@ -32,7 +37,37 @@ canvas {
   z-index: 10;
 }
 
-.preload-images {
-  overflow: hidden;
-  height: 0;
+.stats-container {
+  width: 500px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+#heroStats,
+.placeholderDiv {
+  width: 250px;
+}
+
+#heroStats,
+#enemyStats {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+#enemyStats {
+  display: none;
+}
+
+#heroStats div,
+#enemyStats div {
+  display: flex;
+  align-items: center;
+}
+
+#heroStats h3,
+#enemyStats h3 {
+  margin: 2px;
+  padding: 0;
 }

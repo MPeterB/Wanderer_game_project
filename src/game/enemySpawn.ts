@@ -1,41 +1,41 @@
 import { ctxE } from './enemy.ts';
-import { CharacterPosition } from './characterPositions.ts';
+import { Character } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
 
-function randomNumberMinMax(min: number, max: number) {
+export function randomNumberMinMax(min: number, max: number) {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
 
-export function randomPosition(): CharacterPosition {
-  const characterPosition = {} as CharacterPosition;
-  characterPosition.positionX = randomNumberMinMax(2, 9);
-  characterPosition.positionY = randomNumberMinMax(2, 9);
-  characterPosition.pixelX = characterPosition.positionX * 71;
-  characterPosition.pixelY = characterPosition.positionY * 71;
-  return characterPosition;
+export function randomPosition(): Character {
+  const enemy = {} as Character;
+  enemy.positionX = randomNumberMinMax(2, 9);
+  enemy.positionY = randomNumberMinMax(2, 9);
+  enemy.pixelX = enemy.positionX * 50;
+  enemy.pixelY = enemy.positionY * 50;
+  return enemy;
 }
 
 export function evaluatePosition(
-  otherEnemyPosition1: CharacterPosition,
-  otherEnemyPosition2: CharacterPosition,
-  otherEnemyPosition3: CharacterPosition,
-): CharacterPosition {
+  otherEnemy1: Character,
+  otherEnemy2: Character,
+  otherEnemy3: Character,
+): Character {
   let tileSpawnable: boolean = false;
-  let evaluatedPosition = {} as CharacterPosition;
+  let evaluatedPosition = {} as Character;
 
   while (tileSpawnable === false) {
     const positionToEvaluate = randomPosition();
     if (
       map[positionToEvaluate.positionY][positionToEvaluate.positionX] === wall ||
-      (positionToEvaluate.positionX === otherEnemyPosition1.positionX &&
-        positionToEvaluate.positionY === otherEnemyPosition1.positionY) ||
-      (positionToEvaluate.positionX === otherEnemyPosition2.positionX &&
-        positionToEvaluate.positionY === otherEnemyPosition2.positionY) ||
-      (positionToEvaluate.positionX === otherEnemyPosition3.positionX &&
-        positionToEvaluate.positionY === otherEnemyPosition3.positionY)
+      (positionToEvaluate.positionX === otherEnemy1.positionX &&
+        positionToEvaluate.positionY === otherEnemy1.positionY) ||
+      (positionToEvaluate.positionX === otherEnemy2.positionX &&
+        positionToEvaluate.positionY === otherEnemy2.positionY) ||
+      (positionToEvaluate.positionX === otherEnemy3.positionX &&
+        positionToEvaluate.positionY === otherEnemy3.positionY)
     ) {
       tileSpawnable = false;
     } else {
@@ -48,15 +48,15 @@ export function evaluatePosition(
 
 export function drawEnemy(
   enemyImage: HTMLImageElement,
-  characterPosition: CharacterPosition,
-  otherEnemyPosition1: CharacterPosition,
-  otherEnemyPosition2: CharacterPosition,
-  otherEnemyPosition3: CharacterPosition,
+  enemy: Character,
+  otherEnemy1: Character,
+  otherEnemy2: Character,
+  otherEnemy3: Character,
 ): void {
-  const evaluatedPosition = evaluatePosition(otherEnemyPosition1, otherEnemyPosition2, otherEnemyPosition3);
-  characterPosition.pixelX = evaluatedPosition.pixelX;
-  characterPosition.pixelY = evaluatedPosition.pixelY;
-  characterPosition.positionX = evaluatedPosition.positionX;
-  characterPosition.positionY = evaluatedPosition.positionY;
-  ctxE.drawImage(enemyImage, characterPosition.pixelX, characterPosition.pixelY);
+  const evaluatedPosition = evaluatePosition(otherEnemy1, otherEnemy2, otherEnemy3);
+  enemy.pixelX = evaluatedPosition.pixelX;
+  enemy.pixelY = evaluatedPosition.pixelY;
+  enemy.positionX = evaluatedPosition.positionX;
+  enemy.positionY = evaluatedPosition.positionY;
+  ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY, 50, 50);
 }

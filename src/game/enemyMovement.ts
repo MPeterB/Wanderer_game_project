@@ -1,5 +1,5 @@
 import { canvasE, ctxE } from './enemy.ts';
-import { CharacterPosition } from './characterPositions.ts';
+import { Character } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
 
@@ -15,10 +15,10 @@ function chooseDirection(): string {
 }
 
 export function evaluateDirection(
-  characterPosition: CharacterPosition,
-  otherEnemyPosition1: CharacterPosition,
-  otherEnemyPosition2: CharacterPosition,
-  otherEnemyPosition3: CharacterPosition,
+  enemy: Character,
+  otherEnemy1: Character,
+  otherEnemy2: Character,
+  otherEnemy3: Character,
 ): string {
   let tileWalkable: boolean = false;
   let evaluatedDirection: string = '';
@@ -28,14 +28,11 @@ export function evaluateDirection(
     switch (chosenDirection) {
       case 'down':
         if (
-          characterPosition.pixelY === canvasE.height - 71 ||
-          map[characterPosition.positionY + 1][characterPosition.positionX] === wall ||
-          (characterPosition.positionX === otherEnemyPosition1.positionX &&
-            characterPosition.positionY + 1 === otherEnemyPosition1.positionY) ||
-          (characterPosition.positionX === otherEnemyPosition2.positionX &&
-            characterPosition.positionY + 1 === otherEnemyPosition2.positionY) ||
-          (characterPosition.positionX === otherEnemyPosition3.positionX &&
-            characterPosition.positionY + 1 === otherEnemyPosition3.positionY)
+          enemy.pixelY === canvasE.height - 50 ||
+          map[enemy.positionY + 1][enemy.positionX] === wall ||
+          (enemy.positionX === otherEnemy1.positionX && enemy.positionY + 1 === otherEnemy1.positionY) ||
+          (enemy.positionX === otherEnemy2.positionX && enemy.positionY + 1 === otherEnemy2.positionY) ||
+          (enemy.positionX === otherEnemy3.positionX && enemy.positionY + 1 === otherEnemy3.positionY)
         ) {
           tileWalkable = false;
         } else {
@@ -45,14 +42,11 @@ export function evaluateDirection(
         break;
       case 'up':
         if (
-          characterPosition.pixelY === 0 ||
-          map[characterPosition.positionY - 1][characterPosition.positionX] === wall ||
-          (characterPosition.positionX === otherEnemyPosition1.positionX &&
-            characterPosition.positionY - 1 === otherEnemyPosition1.positionY) ||
-          (characterPosition.positionX === otherEnemyPosition2.positionX &&
-            characterPosition.positionY - 1 === otherEnemyPosition2.positionY) ||
-          (characterPosition.positionX === otherEnemyPosition3.positionX &&
-            characterPosition.positionY - 1 === otherEnemyPosition3.positionY)
+          enemy.pixelY === 0 ||
+          map[enemy.positionY - 1][enemy.positionX] === wall ||
+          (enemy.positionX === otherEnemy1.positionX && enemy.positionY - 1 === otherEnemy1.positionY) ||
+          (enemy.positionX === otherEnemy2.positionX && enemy.positionY - 1 === otherEnemy2.positionY) ||
+          (enemy.positionX === otherEnemy3.positionX && enemy.positionY - 1 === otherEnemy3.positionY)
         ) {
           tileWalkable = false;
         } else {
@@ -62,14 +56,11 @@ export function evaluateDirection(
         break;
       case 'right':
         if (
-          characterPosition.pixelX === canvasE.width - 71 ||
-          map[characterPosition.positionY][characterPosition.positionX + 1] === wall ||
-          (characterPosition.positionX + 1 === otherEnemyPosition1.positionX &&
-            characterPosition.positionY === otherEnemyPosition1.positionY) ||
-          (characterPosition.positionX + 1 === otherEnemyPosition2.positionX &&
-            characterPosition.positionY === otherEnemyPosition2.positionY) ||
-          (characterPosition.positionX + 1 === otherEnemyPosition3.positionX &&
-            characterPosition.positionY === otherEnemyPosition3.positionY)
+          enemy.pixelX === canvasE.width - 50 ||
+          map[enemy.positionY][enemy.positionX + 1] === wall ||
+          (enemy.positionX + 1 === otherEnemy1.positionX && enemy.positionY === otherEnemy1.positionY) ||
+          (enemy.positionX + 1 === otherEnemy2.positionX && enemy.positionY === otherEnemy2.positionY) ||
+          (enemy.positionX + 1 === otherEnemy3.positionX && enemy.positionY === otherEnemy3.positionY)
         ) {
           tileWalkable = false;
         } else {
@@ -79,14 +70,11 @@ export function evaluateDirection(
         break;
       case 'left':
         if (
-          characterPosition.pixelX === 0 ||
-          map[characterPosition.positionY][characterPosition.positionX - 1] === wall ||
-          (characterPosition.positionX - 1 === otherEnemyPosition1.positionX &&
-            characterPosition.positionY === otherEnemyPosition1.positionY) ||
-          (characterPosition.positionX - 1 === otherEnemyPosition2.positionX &&
-            characterPosition.positionY === otherEnemyPosition2.positionY) ||
-          (characterPosition.positionX - 1 === otherEnemyPosition3.positionX &&
-            characterPosition.positionY === otherEnemyPosition3.positionY)
+          enemy.pixelX === 0 ||
+          map[enemy.positionY][enemy.positionX - 1] === wall ||
+          (enemy.positionX - 1 === otherEnemy1.positionX && enemy.positionY === otherEnemy1.positionY) ||
+          (enemy.positionX - 1 === otherEnemy2.positionX && enemy.positionY === otherEnemy2.positionY) ||
+          (enemy.positionX - 1 === otherEnemy3.positionX && enemy.positionY === otherEnemy3.positionY)
         ) {
           tileWalkable = false;
         } else {
@@ -103,31 +91,31 @@ export function evaluateDirection(
 
 export function moveEnemy(
   enemyImage: HTMLImageElement,
-  characterPosition: CharacterPosition,
-  otherEnemyPosition1: CharacterPosition,
-  otherEnemyPosition2: CharacterPosition,
-  otherEnemyPosition3: CharacterPosition,
+  enemy: Character,
+  otherEnemy1: Character,
+  otherEnemy2: Character,
+  otherEnemy3: Character,
 ): void {
-  switch (evaluateDirection(characterPosition, otherEnemyPosition1, otherEnemyPosition2, otherEnemyPosition3)) {
+  switch (evaluateDirection(enemy, otherEnemy1, otherEnemy2, otherEnemy3)) {
     case 'down':
-      ctxE.drawImage(enemyImage, characterPosition.pixelX, characterPosition.pixelY + 71);
-      characterPosition.pixelY += 71;
-      characterPosition.positionY += 1;
+      ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY + 50, 50, 50);
+      enemy.pixelY += 50;
+      enemy.positionY += 1;
       break;
     case 'up':
-      ctxE.drawImage(enemyImage, characterPosition.pixelX, characterPosition.pixelY - 71);
-      characterPosition.pixelY -= 71;
-      characterPosition.positionY -= 1;
+      ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY - 50, 50, 50);
+      enemy.pixelY -= 50;
+      enemy.positionY -= 1;
       break;
     case 'right':
-      ctxE.drawImage(enemyImage, characterPosition.pixelX + 71, characterPosition.pixelY);
-      characterPosition.pixelX += 71;
-      characterPosition.positionX += 1;
+      ctxE.drawImage(enemyImage, enemy.pixelX + 50, enemy.pixelY, 50, 50);
+      enemy.pixelX += 50;
+      enemy.positionX += 1;
       break;
     case 'left':
-      ctxE.drawImage(enemyImage, characterPosition.pixelX - 71, characterPosition.pixelY);
-      characterPosition.pixelX -= 71;
-      characterPosition.positionX -= 1;
+      ctxE.drawImage(enemyImage, enemy.pixelX - 50, enemy.pixelY, 50, 50);
+      enemy.pixelX -= 50;
+      enemy.positionX -= 1;
       break;
     default:
       throw new Error();
