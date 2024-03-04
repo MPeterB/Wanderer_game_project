@@ -20,7 +20,7 @@ export function drawEnemies(): void {
   drawEnemy(boss, bossCurrent, skeleton1Current, skeleton2Current, skeleton3Current);
 }
 
-const seconds: number = 1;
+const seconds: number = 1000;
 
 export function moveEnemies(): void {
   setInterval(() => {

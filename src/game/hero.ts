@@ -2,6 +2,7 @@ import { heroCurrent } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { gameProgress, startGame } from './game.ts';
+import { showEnemyStats } from './showStats.ts';
 
 const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
 export const ctxH = canvasH.getContext('2d') as CanvasRenderingContext2D;
@@ -29,6 +30,7 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY + 50, 50, 50);
         heroCurrent.pixelY += 50;
         heroCurrent.positionY += 1;
+        showEnemyStats();
       }
       break;
     case 'ArrowUp':
@@ -44,6 +46,7 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY - 50, 50, 50);
         heroCurrent.pixelY -= 50;
         heroCurrent.positionY -= 1;
+        showEnemyStats();
       }
       break;
     case 'ArrowRight':
@@ -59,6 +62,7 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         ctxH.drawImage(heroRight, heroCurrent.pixelX + 50, heroCurrent.pixelY, 50, 50);
         heroCurrent.pixelX += 50;
         heroCurrent.positionX += 1;
+        showEnemyStats();
       }
       break;
     case 'ArrowLeft':
@@ -74,23 +78,10 @@ export function onKeyPressHero(event: KeyboardEvent): void {
         ctxH.drawImage(heroLeft, heroCurrent.pixelX - 50, heroCurrent.pixelY, 50, 50);
         heroCurrent.pixelX -= 50;
         heroCurrent.positionX -= 1;
+        showEnemyStats();
       }
       break;
     default:
       throw new Error('Only arrow buttons and WASD are acceptable to move your hero!');
   }
-}
-
-export function showHeroStats(): void {
-  const heroLevel = document.getElementById('heroLevel') as HTMLElement;
-  const heroCurrentHP = document.getElementById('heroCurrentHP') as HTMLElement;
-  const heroMaxHP = document.getElementById('heroMaxHP') as HTMLElement;
-  const heroDefenseP = document.getElementById('heroDefenseP') as HTMLElement;
-  const heroStrikeP = document.getElementById('heroStrikeP') as HTMLElement;
-
-  heroLevel.innerHTML = `${heroCurrent.level}`;
-  heroCurrentHP.innerHTML = `${heroCurrent.currentHealth}`;
-  heroMaxHP.innerHTML = `${heroCurrent.maxHealth}`;
-  heroDefenseP.innerHTML = `${heroCurrent.defensePoint}`;
-  heroStrikeP.innerHTML = `${heroCurrent.strikePoint}`;
 }

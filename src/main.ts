@@ -1,7 +1,8 @@
 import './style.css';
 import { drawMap, map } from './game/map.ts';
-import { ctxH, onKeyPressHero, heroDown, showHeroStats } from './game/hero.ts';
+import { ctxH, onKeyPressHero, heroDown } from './game/hero.ts';
 import { drawEnemies } from './game/enemy.ts';
+import { showHeroStats } from './game/showStats.ts';
 
 window.onload = (): void => {
   document.body.addEventListener('keydown', onKeyPressHero);

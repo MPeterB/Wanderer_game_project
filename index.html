@@ -18,20 +18,26 @@
       <img id="boss" src="boss.png">
     </div>
     <div class="canvas-container">
-      <canvas width="710" height="710" class="map-canvas"></canvas>
-      <canvas width="710" height="710" class="hero-canvas"></canvas>
-      <canvas width="710" height="710" class="enemy-canvas"></canvas>
+      <canvas width="500" height="500" class="map-canvas"></canvas>
+      <canvas width="500" height="500" class="hero-canvas"></canvas>
+      <canvas width="500" height="500" class="enemy-canvas"></canvas>
     </div>
     <div class="stats-container">
-      <div class="heroStats">
-        <h2>Hero:</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <h3>Level:</h3>&nbsp;<h3 id="heroLevel">1</h3>&nbsp;<h3>|</h3>&nbsp;
-        <h3>HP:</h3>&nbsp;<h3 id="heroCurrentHP">8</h3><h3>/</h3><h3 id="heroMaxHP">10</h3>&nbsp;<h3>|</h3>&nbsp;
-        <h3>DP:</h3>&nbsp;<h3 id="heroDefenseP">8</h3>&nbsp;<h3>|</h3>&nbsp;
-        <h3>SP:</h3>&nbsp;<h3 id="heroStrikeP">6</h3>
+      <div id="heroStats">
+        <h2>Hero</h2>
+        <div><h3>Level:</h3>&nbsp;<h3 id="heroLevel">1</h3></div>
+        <div><h3>HP:</h3>&nbsp;<h3 id="heroCurrentHP">8</h3><h3>/</h3><h3 id="heroMaxHP">10</h3></div>
+        <div><h3>DP:</h3>&nbsp;<h3 id="heroDefenseP">8</h3></div>
+        <div><h3>SP:</h3>&nbsp;<h3 id="heroStrikeP">6</h3></div>
       </div>
-      <div class="enemyStats">
-
+      <div class="placeholderDiv">
+        <div id="enemyStats">
+          <h2 id="enemyName">Enemy</h2>
+          <div><h3>Level:</h3>&nbsp;<h3 id="enemyLevel">1</h3></div>
+          <div><h3>HP:</h3>&nbsp;<h3 id="enemyCurrentHP">8</h3><h3>/</h3><h3 id="enemyMaxHP">10</h3></div>
+          <div><h3>DP:</h3>&nbsp;<h3 id="enemyDefenseP">8</h3></div>
+          <div><h3>SP:</h3>&nbsp;<h3 id="enemyStrikeP">6</h3></div>
+        </div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
