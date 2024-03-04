@@ -80,3 +80,17 @@ export function onKeyPressHero(event: KeyboardEvent): void {
       throw new Error('Only arrow buttons and WASD are acceptable to move your hero!');
   }
 }
+
+export function showHeroStats(): void {
+  const heroLevel = document.getElementById('heroLevel') as HTMLElement;
+  const heroCurrentHP = document.getElementById('heroCurrentHP') as HTMLElement;
+  const heroMaxHP = document.getElementById('heroMaxHP') as HTMLElement;
+  const heroDefenseP = document.getElementById('heroDefenseP') as HTMLElement;
+  const heroStrikeP = document.getElementById('heroStrikeP') as HTMLElement;
+
+  heroLevel.innerHTML = `${heroCurrent.level}`;
+  heroCurrentHP.innerHTML = `${heroCurrent.currentHealth}`;
+  heroMaxHP.innerHTML = `${heroCurrent.maxHealth}`;
+  heroDefenseP.innerHTML = `${heroCurrent.defensePoint}`;
+  heroStrikeP.innerHTML = `${heroCurrent.strikePoint}`;
+}
