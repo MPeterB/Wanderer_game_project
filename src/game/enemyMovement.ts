@@ -96,28 +96,32 @@ export function moveEnemy(
   otherEnemy2: Character,
   otherEnemy3: Character,
 ): void {
-  switch (evaluateDirection(enemy, otherEnemy1, otherEnemy2, otherEnemy3)) {
-    case 'down':
-      ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY + 50, 50, 50);
-      enemy.pixelY += 50;
-      enemy.positionY += 1;
-      break;
-    case 'up':
-      ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY - 50, 50, 50);
-      enemy.pixelY -= 50;
-      enemy.positionY -= 1;
-      break;
-    case 'right':
-      ctxE.drawImage(enemyImage, enemy.pixelX + 50, enemy.pixelY, 50, 50);
-      enemy.pixelX += 50;
-      enemy.positionX += 1;
-      break;
-    case 'left':
-      ctxE.drawImage(enemyImage, enemy.pixelX - 50, enemy.pixelY, 50, 50);
-      enemy.pixelX -= 50;
-      enemy.positionX -= 1;
-      break;
-    default:
-      throw new Error();
+  if (enemy.moving === true) {
+    switch (evaluateDirection(enemy, otherEnemy1, otherEnemy2, otherEnemy3)) {
+      case 'down':
+        ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY + 50, 50, 50);
+        enemy.pixelY += 50;
+        enemy.positionY += 1;
+        break;
+      case 'up':
+        ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY - 50, 50, 50);
+        enemy.pixelY -= 50;
+        enemy.positionY -= 1;
+        break;
+      case 'right':
+        ctxE.drawImage(enemyImage, enemy.pixelX + 50, enemy.pixelY, 50, 50);
+        enemy.pixelX += 50;
+        enemy.positionX += 1;
+        break;
+      case 'left':
+        ctxE.drawImage(enemyImage, enemy.pixelX - 50, enemy.pixelY, 50, 50);
+        enemy.pixelX -= 50;
+        enemy.positionX -= 1;
+        break;
+      default:
+        throw new Error();
+    }
+  } else {
+    ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY, 50, 50);
   }
 }

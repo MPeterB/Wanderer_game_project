@@ -17,6 +17,7 @@ export type Character = {
   currentHealth: number;
   defensePoint: number;
   strikePoint: number;
+  moving: boolean;
 };
 
 export const heroCurrent: Character = {
@@ -30,6 +31,7 @@ export const heroCurrent: Character = {
   currentHealth: heroMaxHealth,
   defensePoint: 2 * randomNumberMinMax(1, 6),
   strikePoint: 5 + randomNumberMinMax(1, 6),
+  moving: true,
 };
 
 export const skeleton1Current: Character = {
@@ -43,6 +45,7 @@ export const skeleton1Current: Character = {
   currentHealth: enemy1MaxHealth,
   defensePoint: 0.5 * randomNumberMinMax(1, 6),
   strikePoint: randomNumberMinMax(1, 6),
+  moving: true,
 };
 
 export const skeleton2Current: Character = {
@@ -56,6 +59,7 @@ export const skeleton2Current: Character = {
   currentHealth: enemy2MaxHealth,
   defensePoint: 0.5 * randomNumberMinMax(1, 6),
   strikePoint: randomNumberMinMax(1, 6),
+  moving: true,
 };
 
 export const skeleton3Current: Character = {
@@ -69,6 +73,7 @@ export const skeleton3Current: Character = {
   currentHealth: enemy3MaxHealth,
   defensePoint: 0.5 * randomNumberMinMax(1, 6),
   strikePoint: randomNumberMinMax(1, 6),
+  moving: true,
 };
 
 export const bossCurrent: Character = {
@@ -82,4 +87,5 @@ export const bossCurrent: Character = {
   currentHealth: bossMaxHealth,
   defensePoint: 0.5 * randomNumberMinMax(1, 6) + randomNumberMinMax(1, 6) / 2,
   strikePoint: randomNumberMinMax(1, 6) + 1,
+  moving: true,
 };
