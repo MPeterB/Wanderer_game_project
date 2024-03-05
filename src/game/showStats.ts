@@ -39,17 +39,25 @@ export function evaluateSameTile(
   if (heroCurrent.positionX === enemy1.positionX && heroCurrent.positionY === enemy1.positionY) {
     sameTileEnemy.currentEnemy = enemy1;
     sameTileEnemy.sameTile = true;
+    enemy1.moving = false;
   } else if (heroCurrent.positionX === enemy2.positionX && heroCurrent.positionY === enemy2.positionY) {
     sameTileEnemy.currentEnemy = enemy2;
     sameTileEnemy.sameTile = true;
+    enemy2.moving = false;
   } else if (heroCurrent.positionX === enemy3.positionX && heroCurrent.positionY === enemy3.positionY) {
     sameTileEnemy.currentEnemy = enemy3;
     sameTileEnemy.sameTile = true;
+    enemy3.moving = false;
   } else if (heroCurrent.positionX === enemy4.positionX && heroCurrent.positionY === enemy4.positionY) {
     sameTileEnemy.currentEnemy = enemy4;
     sameTileEnemy.sameTile = true;
+    enemy4.moving = false;
   } else {
     sameTileEnemy.sameTile = false;
+    enemy1.moving = true;
+    enemy2.moving = true;
+    enemy3.moving = true;
+    enemy4.moving = true;
   }
   return sameTileEnemy;
 }
