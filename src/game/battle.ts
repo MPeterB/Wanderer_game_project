@@ -4,9 +4,10 @@ import {
   skeleton3Current,
   bossCurrent,
   heroCurrent,
+  Character,
 } from './characters.ts';
 import { randomNumberMinMax } from './enemySpawn.ts';
-import { evaluateSameTile, SameTileEnemy } from './showStats.ts';
+import { evaluateSameTile, SameTileEnemy, hideEnemyStats } from './showStats.ts';
 
 function isStrikeSuccessful(): [boolean, SameTileEnemy, number] {
   const sameTileEnemy: SameTileEnemy = evaluateSameTile(
@@ -25,6 +26,13 @@ function isStrikeSuccessful(): [boolean, SameTileEnemy, number] {
   return [strikeSuccessful, sameTileEnemy, strikeValue];
 }
 
+export function killEnemy(enemy: Character): void {
+  if (enemy.currentHealth <= 0) {
+    enemy.alive = false;
+    hideEnemyStats()
+  }
+}
+
 export function strike(): void {
   const strikeSuccessful: boolean = isStrikeSuccessful()[0];
   const sameTileEnemy: SameTileEnemy = isStrikeSuccessful()[1];
@@ -35,5 +43,6 @@ export function strike(): void {
   if (strikeSuccessful === true) {
     sameTileEnemy.currentEnemy.currentHealth -= healthToDedact
     enemyCurrentHP.innerHTML = `${sameTileEnemy.currentEnemy.currentHealth}`;
+    killEnemy(sameTileEnemy.currentEnemy)
   }
 }

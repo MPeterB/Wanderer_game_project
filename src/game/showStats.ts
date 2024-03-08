@@ -72,16 +72,25 @@ export function showEnemyStats(): void {
 
   if (sameTileEnemy.sameTile === true) {
     enemyCurrent = sameTileEnemy.currentEnemy;
-    if (enemyStats.style.display === 'none') {
-      enemyName.innerHTML = `${enemyCurrent.name}`;
-      enemyLevel.innerHTML = `${enemyCurrent.level}`;
-      enemyCurrentHP.innerHTML = `${enemyCurrent.currentHealth}`;
-      enemyMaxHP.innerHTML = `${enemyCurrent.maxHealth}`;
-      enemyDefenseP.innerHTML = `${enemyCurrent.defensePoint}`;
-      enemyStrikeP.innerHTML = `${enemyCurrent.strikePoint}`;
-      enemyStats.style.display = 'flex';
+    if (enemyCurrent.alive === true) {
+      if (enemyStats.style.display === 'none') {
+        enemyName.innerHTML = `${enemyCurrent.name}`;
+        enemyLevel.innerHTML = `${enemyCurrent.level}`;
+        enemyCurrentHP.innerHTML = `${enemyCurrent.currentHealth}`;
+        enemyMaxHP.innerHTML = `${enemyCurrent.maxHealth}`;
+        enemyDefenseP.innerHTML = `${enemyCurrent.defensePoint}`;
+        enemyStrikeP.innerHTML = `${enemyCurrent.strikePoint}`;
+        enemyStats.style.display = 'flex';
+      }
+    } else {
+      enemyStats.style.display = 'none'
     }
   } else {
     enemyStats.style.display = 'none';
   }
+}
+
+export function hideEnemyStats(): void {
+  const enemyStats = document.getElementById('enemyStats') as HTMLElement;
+  enemyStats.style.display = 'none';
 }

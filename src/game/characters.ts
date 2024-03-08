@@ -18,6 +18,7 @@ export type Character = {
   defensePoint: number;
   strikePoint: number;
   moving: boolean;
+  alive: boolean;
 };
 
 export const heroCurrent: Character = {
@@ -32,6 +33,7 @@ export const heroCurrent: Character = {
   defensePoint: 2 * randomNumberMinMax(1, 6),
   strikePoint: 5 + randomNumberMinMax(1, 6),
   moving: true,
+  alive: true,
 };
 
 export const skeleton1Current: Character = {
@@ -46,6 +48,7 @@ export const skeleton1Current: Character = {
   defensePoint: 0.5 * randomNumberMinMax(1, 6),
   strikePoint: randomNumberMinMax(1, 6),
   moving: true,
+  alive: true,
 };
 
 export const skeleton2Current: Character = {
@@ -60,6 +63,7 @@ export const skeleton2Current: Character = {
   defensePoint: 0.5 * randomNumberMinMax(1, 6),
   strikePoint: randomNumberMinMax(1, 6),
   moving: true,
+  alive: true,
 };
 
 export const skeleton3Current: Character = {
@@ -74,6 +78,7 @@ export const skeleton3Current: Character = {
   defensePoint: 0.5 * randomNumberMinMax(1, 6),
   strikePoint: randomNumberMinMax(1, 6),
   moving: true,
+  alive: true,
 };
 
 export const bossCurrent: Character = {
@@ -88,4 +93,5 @@ export const bossCurrent: Character = {
   defensePoint: 0.5 * randomNumberMinMax(1, 6) + randomNumberMinMax(1, 6) / 2,
   strikePoint: randomNumberMinMax(1, 6) + 1,
   moving: true,
+  alive: true,
 };
