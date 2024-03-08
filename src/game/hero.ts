@@ -12,7 +12,7 @@ const heroUp = document.getElementById('hero-up') as HTMLImageElement;
 const heroRight = document.getElementById('hero-right') as HTMLImageElement;
 const heroLeft = document.getElementById('hero-left') as HTMLImageElement;
 
-export function moveHero(event: KeyboardEvent): void {
+export function onKeyPress(event: KeyboardEvent): void {
   switch (event.code) {
     case 'ArrowDown':
     case 'KeyS':
