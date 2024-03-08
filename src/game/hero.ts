@@ -3,6 +3,7 @@ import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { gameProgress, startGame } from './game.ts';
 import { showEnemyStats } from './showStats.ts';
+import { strike } from './battle.ts';
 
 const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
 export const ctxH = canvasH.getContext('2d') as CanvasRenderingContext2D;
@@ -80,6 +81,9 @@ export function onKeyPress(event: KeyboardEvent): void {
         heroCurrent.positionX -= 1;
         showEnemyStats();
       }
+      break;
+    case 'Space':
+      strike();
       break;
     default:
       throw new Error('Only arrow buttons and WASD are acceptable to move your hero!');

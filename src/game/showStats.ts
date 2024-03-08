@@ -21,7 +21,7 @@ export function showHeroStats(): void {
   heroStrikeP.innerHTML = `${heroCurrent.strikePoint}`;
 }
 
-type SameTileEnemy = {
+export type SameTileEnemy = {
   sameTile: boolean;
   currentEnemy: Character;
 };
