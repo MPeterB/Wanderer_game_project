@@ -12,6 +12,7 @@ export type Character = {
   pixelY: number;
   positionX: number;
   positionY: number;
+  lastMove: Date;
   level: number;
   maxHealth: number;
   currentHealth: number;
@@ -27,6 +28,7 @@ export const heroCurrent: Character = {
   pixelY: 0,
   positionX: 0,
   positionY: 0,
+  lastMove: new Date,
   level: 1,
   maxHealth: heroMaxHealth,
   currentHealth: heroMaxHealth,
@@ -42,6 +44,7 @@ export const skeleton1Current: Character = {
   pixelY: 100,
   positionX: 6,
   positionY: 2,
+  lastMove: new Date,
   level: 1,
   maxHealth: enemy1MaxHealth,
   currentHealth: enemy1MaxHealth,
@@ -57,6 +60,7 @@ export const skeleton2Current: Character = {
   pixelY: 350,
   positionX: 1,
   positionY: 7,
+  lastMove: new Date,
   level: 1,
   maxHealth: enemy2MaxHealth,
   currentHealth: enemy2MaxHealth,
@@ -72,6 +76,7 @@ export const skeleton3Current: Character = {
   pixelY: 400,
   positionX: 7,
   positionY: 8,
+  lastMove: new Date,
   level: 1,
   maxHealth: enemy3MaxHealth,
   currentHealth: enemy3MaxHealth,
@@ -87,6 +92,7 @@ export const bossCurrent: Character = {
   pixelY: 250,
   positionX: 4,
   positionY: 5,
+  lastMove: new Date,
   level: 1,
   maxHealth: bossMaxHealth,
   currentHealth: bossMaxHealth,
