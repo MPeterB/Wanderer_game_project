@@ -2,8 +2,7 @@ import { heroCurrent } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { gameProgress, startGame } from './game.ts';
-import { showEnemyStats } from './showStats.ts';
-import { strike } from './battle.ts';
+import { evaluateSameTile, showEnemyStats } from './showStats.ts';
 
 const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
 export const ctxH = canvasH.getContext('2d') as CanvasRenderingContext2D;
@@ -12,12 +11,14 @@ export const heroDown = document.getElementById('hero-down') as HTMLImageElement
 const heroUp = document.getElementById('hero-up') as HTMLImageElement;
 const heroRight = document.getElementById('hero-right') as HTMLImageElement;
 const heroLeft = document.getElementById('hero-left') as HTMLImageElement;
+const alerts = document.getElementById('alerts') as HTMLElement;
 
-export function onKeyPress(event: KeyboardEvent): void {
+export function heroMove(event: KeyboardEvent): void {
   switch (event.code) {
     case 'ArrowDown':
     case 'KeyS':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      alerts.innerHTML = '';
       if (gameProgress.inProgress === false) {
         startGame();
         gameProgress.inProgress = true;
@@ -33,10 +34,12 @@ export function onKeyPress(event: KeyboardEvent): void {
         heroCurrent.positionY += 1;
         showEnemyStats();
       }
+      heroCurrent.lastMove = new Date;
       break;
     case 'ArrowUp':
     case 'KeyW':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      alerts.innerHTML = '';
       if (gameProgress.inProgress === false) {
         startGame();
         gameProgress.inProgress = true;
@@ -49,10 +52,12 @@ export function onKeyPress(event: KeyboardEvent): void {
         heroCurrent.positionY -= 1;
         showEnemyStats();
       }
+      heroCurrent.lastMove = new Date;
       break;
     case 'ArrowRight':
     case 'KeyD':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      alerts.innerHTML = '';
       if (gameProgress.inProgress === false) {
         startGame();
         gameProgress.inProgress = true;
@@ -65,10 +70,12 @@ export function onKeyPress(event: KeyboardEvent): void {
         heroCurrent.positionX += 1;
         showEnemyStats();
       }
+      heroCurrent.lastMove = new Date;
       break;
     case 'ArrowLeft':
     case 'KeyA':
       ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+      alerts.innerHTML = '';
       if (gameProgress.inProgress === false) {
         startGame();
         gameProgress.inProgress = true;
@@ -81,11 +88,15 @@ export function onKeyPress(event: KeyboardEvent): void {
         heroCurrent.positionX -= 1;
         showEnemyStats();
       }
+      heroCurrent.lastMove = new Date;
       break;
     case 'Space':
-      strike();
+      const sameTile: boolean = evaluateSameTile().sameTile;
+      if (sameTile === false) {
+        alerts.innerHTML = 'You can strike only if you are on the same tile as an enemy!'
+      }
       break;
     default:
-      throw new Error('Only arrow buttons and WASD are acceptable to move your hero!');
+      alerts.innerHTML = 'Only arrow buttons and WASD are acceptable to move your hero!';
   }
 }

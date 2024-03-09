@@ -3,7 +3,7 @@ import { Character, heroCurrent } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { showEnemyStats } from './showStats.ts';
-import { strike } from './battle.ts';
+import { enemyStrike } from './battle.ts';
 
 const directions: string[] = ['down', 'up', 'right', 'left'];
 
@@ -22,6 +22,7 @@ export function evaluateDirection(
   otherEnemy2: Character,
   otherEnemy3: Character,
 ): string | void {
+  const alerts = document.getElementById('alerts') as HTMLElement;
   if (enemy.alive === false) {
     return 'dead';
   } else {
@@ -91,7 +92,8 @@ export function evaluateDirection(
             }
             break;
           default:
-            throw new Error();
+            const error = new Error();
+            alerts.innerHTML = `${error.message}`;
         }
       }
       return evaluatedDirection;
@@ -113,7 +115,7 @@ export function moveEnemy(
       enemy.pixelY += 50;
       enemy.positionY += 1;
       enemy.lastMove = new Date;
-      strike();
+      enemyStrike();
       showEnemyStats();
       break;
     case 'up':
@@ -121,7 +123,7 @@ export function moveEnemy(
       enemy.pixelY -= 50;
       enemy.positionY -= 1;
       enemy.lastMove = new Date;
-      strike();
+      enemyStrike();
       showEnemyStats();
       break;
     case 'right':
@@ -129,7 +131,7 @@ export function moveEnemy(
       enemy.pixelX += 50;
       enemy.positionX += 1;
       enemy.lastMove = new Date;
-      strike();
+      enemyStrike();
       showEnemyStats();
       break;
     case 'left':
@@ -137,7 +139,7 @@ export function moveEnemy(
       enemy.pixelX -= 50;
       enemy.positionX -= 1;
       enemy.lastMove = new Date;
-      strike();
+      enemyStrike();
       showEnemyStats();
       break;
     case 'dead':
