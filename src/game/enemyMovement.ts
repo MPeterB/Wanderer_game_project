@@ -28,6 +28,7 @@ export function evaluateDirection(
   } else {
     if (enemy.positionX === heroCurrent.positionX && enemy.positionY === heroCurrent.positionY) {
       enemy.moving = false;
+      enemyStrike();
     } else {
       let tileWalkable: boolean = false;
       let evaluatedDirection: string = '';
@@ -115,7 +116,6 @@ export function moveEnemy(
       enemy.pixelY += 50;
       enemy.positionY += 1;
       enemy.lastMove = new Date;
-      enemyStrike();
       showEnemyStats();
       break;
     case 'up':
@@ -123,7 +123,6 @@ export function moveEnemy(
       enemy.pixelY -= 50;
       enemy.positionY -= 1;
       enemy.lastMove = new Date;
-      enemyStrike();
       showEnemyStats();
       break;
     case 'right':
@@ -131,7 +130,6 @@ export function moveEnemy(
       enemy.pixelX += 50;
       enemy.positionX += 1;
       enemy.lastMove = new Date;
-      enemyStrike();
       showEnemyStats();
       break;
     case 'left':
@@ -139,7 +137,6 @@ export function moveEnemy(
       enemy.pixelX -= 50;
       enemy.positionX -= 1;
       enemy.lastMove = new Date;
-      enemyStrike();
       showEnemyStats();
       break;
     case 'dead':
