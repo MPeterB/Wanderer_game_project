@@ -3,6 +3,7 @@ import { Character, heroCurrent } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { showEnemyStats } from './showStats.ts';
+import { strike } from './battle.ts';
 
 const directions: string[] = ['down', 'up', 'right', 'left'];
 
@@ -111,25 +112,33 @@ export function moveEnemy(
       ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY + 50, 50, 50);
       enemy.pixelY += 50;
       enemy.positionY += 1;
-      showEnemyStats()
+      enemy.lastMove = new Date;
+      strike();
+      showEnemyStats();
       break;
     case 'up':
       ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY - 50, 50, 50);
       enemy.pixelY -= 50;
       enemy.positionY -= 1;
-      showEnemyStats()
+      enemy.lastMove = new Date;
+      strike();
+      showEnemyStats();
       break;
     case 'right':
       ctxE.drawImage(enemyImage, enemy.pixelX + 50, enemy.pixelY, 50, 50);
       enemy.pixelX += 50;
       enemy.positionX += 1;
-      showEnemyStats()
+      enemy.lastMove = new Date;
+      strike();
+      showEnemyStats();
       break;
     case 'left':
       ctxE.drawImage(enemyImage, enemy.pixelX - 50, enemy.pixelY, 50, 50);
       enemy.pixelX -= 50;
       enemy.positionX -= 1;
-      showEnemyStats()
+      enemy.lastMove = new Date;
+      strike();
+      showEnemyStats();
       break;
     case 'dead':
       break;
