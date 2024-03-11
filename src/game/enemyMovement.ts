@@ -28,7 +28,8 @@ export function evaluateDirection(
   } else {
     if (enemy.positionX === heroCurrent.positionX && enemy.positionY === heroCurrent.positionY) {
       enemy.moving = false;
-      enemyStrike();
+      heroCurrent.moving = false;
+      return 'battle';
     } else {
       let tileWalkable: boolean = false;
       let evaluatedDirection: string = '';
@@ -116,33 +117,33 @@ export function moveEnemy(
       enemy.pixelY += 50;
       enemy.positionY += 1;
       enemy.lastMove = new Date;
-      showEnemyStats();
       break;
     case 'up':
       ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY - 50, 50, 50);
       enemy.pixelY -= 50;
       enemy.positionY -= 1;
       enemy.lastMove = new Date;
-      showEnemyStats();
       break;
     case 'right':
       ctxE.drawImage(enemyImage, enemy.pixelX + 50, enemy.pixelY, 50, 50);
       enemy.pixelX += 50;
       enemy.positionX += 1;
       enemy.lastMove = new Date;
-      showEnemyStats();
       break;
     case 'left':
       ctxE.drawImage(enemyImage, enemy.pixelX - 50, enemy.pixelY, 50, 50);
       enemy.pixelX -= 50;
       enemy.positionX -= 1;
       enemy.lastMove = new Date;
+      break;
+    case 'battle':
+      ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY, 50, 50);
       showEnemyStats();
+      enemyStrike();
       break;
     case 'dead':
       break;
     default:
       ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY, 50, 50);
-      showEnemyStats()
   }
 }
