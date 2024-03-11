@@ -17,78 +17,94 @@ export function heroMove(event: KeyboardEvent): void {
   switch (event.code) {
     case 'ArrowDown':
     case 'KeyS':
-      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
-      alerts.innerHTML = '';
-      if (gameProgress.inProgress === false) {
-        startGame();
-        gameProgress.inProgress = true;
-      }
-      if (
-        heroCurrent.pixelY === canvasH.height - 50 ||
-        map[heroCurrent.positionY + 1][heroCurrent.positionX] === wall
-      ) {
-        ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
+      if (heroCurrent.moving === false) {
+        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`
       } else {
-        ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY + 50, 50, 50);
-        heroCurrent.pixelY += 50;
-        heroCurrent.positionY += 1;
-        showEnemyStats();
+        ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+        alerts.innerHTML = '';
+        if (gameProgress.inProgress === false) {
+          startGame();
+          gameProgress.inProgress = true;
+        }
+        if (
+          heroCurrent.pixelY === canvasH.height - 50 ||
+          map[heroCurrent.positionY + 1][heroCurrent.positionX] === wall
+        ) {
+          ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
+        } else {
+          ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY + 50, 50, 50);
+          heroCurrent.pixelY += 50;
+          heroCurrent.positionY += 1;
+          showEnemyStats();
+        }
+        heroCurrent.lastMove = new Date;
       }
-      heroCurrent.lastMove = new Date;
       break;
     case 'ArrowUp':
     case 'KeyW':
-      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
-      alerts.innerHTML = '';
-      if (gameProgress.inProgress === false) {
-        startGame();
-        gameProgress.inProgress = true;
-      }
-      if (heroCurrent.pixelY === 0 || map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall) {
-        ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
+      if (heroCurrent.moving === false) {
+        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`
       } else {
-        ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY - 50, 50, 50);
-        heroCurrent.pixelY -= 50;
-        heroCurrent.positionY -= 1;
-        showEnemyStats();
+        ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+        alerts.innerHTML = '';
+        if (gameProgress.inProgress === false) {
+          startGame();
+          gameProgress.inProgress = true;
+        }
+        if (heroCurrent.pixelY === 0 || map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall) {
+          ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
+        } else {
+          ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY - 50, 50, 50);
+          heroCurrent.pixelY -= 50;
+          heroCurrent.positionY -= 1;
+          showEnemyStats();
+        }
+        heroCurrent.lastMove = new Date;
       }
-      heroCurrent.lastMove = new Date;
       break;
     case 'ArrowRight':
     case 'KeyD':
-      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
-      alerts.innerHTML = '';
-      if (gameProgress.inProgress === false) {
-        startGame();
-        gameProgress.inProgress = true;
-      }
-      if (heroCurrent.pixelX === canvasH.width - 50 || map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall) {
-        ctxH.drawImage(heroRight, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
+      if (heroCurrent.moving === false) {
+        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`
       } else {
-        ctxH.drawImage(heroRight, heroCurrent.pixelX + 50, heroCurrent.pixelY, 50, 50);
-        heroCurrent.pixelX += 50;
-        heroCurrent.positionX += 1;
-        showEnemyStats();
+        ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+        alerts.innerHTML = '';
+        if (gameProgress.inProgress === false) {
+          startGame();
+          gameProgress.inProgress = true;
+        }
+        if (heroCurrent.pixelX === canvasH.width - 50 || map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall) {
+          ctxH.drawImage(heroRight, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
+        } else {
+          ctxH.drawImage(heroRight, heroCurrent.pixelX + 50, heroCurrent.pixelY, 50, 50);
+          heroCurrent.pixelX += 50;
+          heroCurrent.positionX += 1;
+          showEnemyStats();
+        }
+        heroCurrent.lastMove = new Date;
       }
-      heroCurrent.lastMove = new Date;
       break;
     case 'ArrowLeft':
     case 'KeyA':
-      ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
-      alerts.innerHTML = '';
-      if (gameProgress.inProgress === false) {
-        startGame();
-        gameProgress.inProgress = true;
-      }
-      if (heroCurrent.pixelX === 0 || map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall) {
-        ctxH.drawImage(heroLeft, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
+      if (heroCurrent.moving === false) {
+        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`
       } else {
-        ctxH.drawImage(heroLeft, heroCurrent.pixelX - 50, heroCurrent.pixelY, 50, 50);
-        heroCurrent.pixelX -= 50;
-        heroCurrent.positionX -= 1;
-        showEnemyStats();
+        ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+        alerts.innerHTML = '';
+        if (gameProgress.inProgress === false) {
+          startGame();
+          gameProgress.inProgress = true;
+        }
+        if (heroCurrent.pixelX === 0 || map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall) {
+          ctxH.drawImage(heroLeft, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
+        } else {
+          ctxH.drawImage(heroLeft, heroCurrent.pixelX - 50, heroCurrent.pixelY, 50, 50);
+          heroCurrent.pixelX -= 50;
+          heroCurrent.positionX -= 1;
+          showEnemyStats();
+        }
+        heroCurrent.lastMove = new Date;
       }
-      heroCurrent.lastMove = new Date;
       break;
     case 'Space':
       const sameTile: boolean = evaluateSameTile().sameTile;
