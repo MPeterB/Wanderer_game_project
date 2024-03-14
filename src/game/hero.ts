@@ -3,6 +3,7 @@ import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { gameProgress, startGame } from './game.ts';
 import { evaluateSameTile, showEnemyStats } from './showStats.ts';
+import { heroStrikeCountdown } from './battle.ts';
 
 const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
 export const ctxH = canvasH.getContext('2d') as CanvasRenderingContext2D;
@@ -22,6 +23,7 @@ export function heroMove(event: KeyboardEvent): void {
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
+        heroStrikeCountdown();
         if (gameProgress.inProgress === false) {
           startGame();
           gameProgress.inProgress = true;
@@ -47,6 +49,7 @@ export function heroMove(event: KeyboardEvent): void {
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
+        heroStrikeCountdown();
         if (gameProgress.inProgress === false) {
           startGame();
           gameProgress.inProgress = true;
@@ -69,6 +72,7 @@ export function heroMove(event: KeyboardEvent): void {
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
+        heroStrikeCountdown();
         if (gameProgress.inProgress === false) {
           startGame();
           gameProgress.inProgress = true;
@@ -91,6 +95,7 @@ export function heroMove(event: KeyboardEvent): void {
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
+        heroStrikeCountdown();
         if (gameProgress.inProgress === false) {
           startGame();
           gameProgress.inProgress = true;
