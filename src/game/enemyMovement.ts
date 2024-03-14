@@ -3,7 +3,7 @@ import { Character, heroCurrent } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { showEnemyStats } from './showStats.ts';
-import { enemyStrike } from './battle.ts';
+import { enemyBattle } from './battle.ts';
 
 const directions: string[] = ['down', 'up', 'right', 'left'];
 
@@ -139,7 +139,7 @@ export function moveEnemy(
     case 'battle':
       ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY, 50, 50);
       showEnemyStats();
-      enemyStrike();
+      enemyBattle();
       break;
     case 'dead':
       break;
