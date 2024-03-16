@@ -2,8 +2,8 @@ import { heroCurrent } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { gameProgress, startGame } from './game.ts';
-import { evaluateSameTile, showEnemyStats } from './showStats.ts';
-import { heroStrikeCountdown } from './battle.ts';
+import { SameTileEnemy, evaluateSameTile, showEnemyStats } from './showStats.ts';
+import { battle, firstAttackHappened } from './battle.ts';
 
 const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
 export const ctxH = canvasH.getContext('2d') as CanvasRenderingContext2D;
@@ -13,17 +13,20 @@ const heroUp = document.getElementById('hero-up') as HTMLImageElement;
 const heroRight = document.getElementById('hero-right') as HTMLImageElement;
 const heroLeft = document.getElementById('hero-left') as HTMLImageElement;
 const alerts = document.getElementById('alerts') as HTMLElement;
+const gameMessages = document.getElementById('gameMessages') as HTMLElement;
 
 export function heroMove(event: KeyboardEvent): void {
   switch (event.code) {
     case 'ArrowDown':
     case 'KeyS':
       if (heroCurrent.moving === false) {
-        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`
+        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`;
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
-        heroStrikeCountdown();
+        gameMessages.innerHTML = '';
+        heroCurrent.lastMove = new Date;
+        firstAttackHappened.value = false;
         if (gameProgress.inProgress === false) {
           startGame();
           gameProgress.inProgress = true;
@@ -37,9 +40,20 @@ export function heroMove(event: KeyboardEvent): void {
           ctxH.drawImage(heroDown, heroCurrent.pixelX, heroCurrent.pixelY + 50, 50, 50);
           heroCurrent.pixelY += 50;
           heroCurrent.positionY += 1;
+          const sameTileEnemy: SameTileEnemy = evaluateSameTile();
+          if (sameTileEnemy.sameTile === true && sameTileEnemy.currentEnemy.alive === true) {
+            if (
+              heroCurrent.positionX === sameTileEnemy.currentEnemy.positionX &&
+              heroCurrent.positionY === sameTileEnemy.currentEnemy.positionY
+            ) {
+              heroCurrent.moving = false;
+              sameTileEnemy.currentEnemy.moving = false;
+            }
+          }
+          sameTileEnemy.sameTile = false;
           showEnemyStats();
+          battle();
         }
-        heroCurrent.lastMove = new Date;
       }
       break;
     case 'ArrowUp':
@@ -49,7 +63,9 @@ export function heroMove(event: KeyboardEvent): void {
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
-        heroStrikeCountdown();
+        gameMessages.innerHTML = '';
+        heroCurrent.lastMove = new Date;
+        firstAttackHappened.value = false;
         if (gameProgress.inProgress === false) {
           startGame();
           gameProgress.inProgress = true;
@@ -60,9 +76,20 @@ export function heroMove(event: KeyboardEvent): void {
           ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY - 50, 50, 50);
           heroCurrent.pixelY -= 50;
           heroCurrent.positionY -= 1;
+          const sameTileEnemy: SameTileEnemy = evaluateSameTile();
+          if (sameTileEnemy.sameTile === true && sameTileEnemy.currentEnemy.alive === true) {
+            if (
+              heroCurrent.positionX === sameTileEnemy.currentEnemy.positionX &&
+              heroCurrent.positionY === sameTileEnemy.currentEnemy.positionY
+            ) {
+              heroCurrent.moving = false;
+              sameTileEnemy.currentEnemy.moving = false;
+            }
+          }
+          sameTileEnemy.sameTile = false;
           showEnemyStats();
+          battle();
         }
-        heroCurrent.lastMove = new Date;
       }
       break;
     case 'ArrowRight':
@@ -72,7 +99,9 @@ export function heroMove(event: KeyboardEvent): void {
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
-        heroStrikeCountdown();
+        gameMessages.innerHTML = '';
+        heroCurrent.lastMove = new Date;
+        firstAttackHappened.value = false;
         if (gameProgress.inProgress === false) {
           startGame();
           gameProgress.inProgress = true;
@@ -83,9 +112,20 @@ export function heroMove(event: KeyboardEvent): void {
           ctxH.drawImage(heroRight, heroCurrent.pixelX + 50, heroCurrent.pixelY, 50, 50);
           heroCurrent.pixelX += 50;
           heroCurrent.positionX += 1;
+          const sameTileEnemy: SameTileEnemy = evaluateSameTile();
+          if (sameTileEnemy.sameTile === true && sameTileEnemy.currentEnemy.alive === true) {
+            if (
+              heroCurrent.positionX === sameTileEnemy.currentEnemy.positionX &&
+              heroCurrent.positionY === sameTileEnemy.currentEnemy.positionY
+            ) {
+              heroCurrent.moving = false;
+              sameTileEnemy.currentEnemy.moving = false;
+            }
+          }
+          sameTileEnemy.sameTile = false;
           showEnemyStats();
+          battle();
         }
-        heroCurrent.lastMove = new Date;
       }
       break;
     case 'ArrowLeft':
@@ -95,7 +135,9 @@ export function heroMove(event: KeyboardEvent): void {
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
-        heroStrikeCountdown();
+        gameMessages.innerHTML = '';
+        heroCurrent.lastMove = new Date;
+        firstAttackHappened.value = false;
         if (gameProgress.inProgress === false) {
           startGame();
           gameProgress.inProgress = true;
@@ -106,9 +148,20 @@ export function heroMove(event: KeyboardEvent): void {
           ctxH.drawImage(heroLeft, heroCurrent.pixelX - 50, heroCurrent.pixelY, 50, 50);
           heroCurrent.pixelX -= 50;
           heroCurrent.positionX -= 1;
+          const sameTileEnemy: SameTileEnemy = evaluateSameTile();
+          if (sameTileEnemy.sameTile === true && sameTileEnemy.currentEnemy.alive === true) {
+            if (
+              heroCurrent.positionX === sameTileEnemy.currentEnemy.positionX &&
+              heroCurrent.positionY === sameTileEnemy.currentEnemy.positionY
+            ) {
+              heroCurrent.moving = false;
+              sameTileEnemy.currentEnemy.moving = false;
+            }
+          }
+          sameTileEnemy.sameTile = false;
           showEnemyStats();
+          battle();
         }
-        heroCurrent.lastMove = new Date;
       }
       break;
     case 'Space':
