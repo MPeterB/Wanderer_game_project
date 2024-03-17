@@ -78,24 +78,26 @@ export function killCharacter(character: Character): void {
 }
 
 export function battle(): void {
-  const sameTileEnemy: SameTileEnemy = evaluateSameTile();
-
-  if (sameTileEnemy.sameTile === true && sameTileEnemy.currentEnemy.alive === true) {
-    if (firstAttackHappened.value === false) {
-      firstToAttack(sameTileEnemy.currentEnemy);
-      if (herosTurn.value === false) {
-        enemyStrike(sameTileEnemy.currentEnemy);
-      } else {
-        heroStrikeCountdown();
-      }
-      firstAttackHappened.value = true;
-    } else if (firstAttackHappened.value === true) {
-      nextToAttack(sameTileEnemy.currentEnemy);
-      if (herosTurn.value === false) {
-        enemyStrike(sameTileEnemy.currentEnemy);
-      } else {
-        heroStrikeCountdown();
+  if (heroCurrent.alive === true) {
+    const sameTileEnemy: SameTileEnemy = evaluateSameTile();
+    if (sameTileEnemy.sameTile === true && sameTileEnemy.currentEnemy.alive === true) {
+      if (firstAttackHappened.value === false) {
+        firstToAttack(sameTileEnemy.currentEnemy);
+        if (herosTurn.value === false) {
+          enemyStrike(sameTileEnemy.currentEnemy);
+        } else {
+          heroStrikeCountdown();
+        }
+        firstAttackHappened.value = true;
+      } else if (firstAttackHappened.value === true) {
+        nextToAttack(sameTileEnemy.currentEnemy);
+        if (herosTurn.value === false) {
+          enemyStrike(sameTileEnemy.currentEnemy);
+        } else {
+          heroStrikeCountdown();
+        }
       }
     }
   }
+
 }
