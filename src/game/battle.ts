@@ -99,5 +99,4 @@ export function battle(): void {
       }
     }
   }
-
 }
