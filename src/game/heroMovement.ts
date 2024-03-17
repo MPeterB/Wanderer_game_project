@@ -25,7 +25,7 @@ export function heroMove(event: KeyboardEvent): void {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
         gameMessages.innerHTML = '';
-        heroCurrent.lastMove = new Date;
+        heroCurrent.lastMove = new Date();
         firstAttackHappened.value = false;
         if (gameProgress.inProgress === false) {
           startGame();
@@ -59,12 +59,12 @@ export function heroMove(event: KeyboardEvent): void {
     case 'ArrowUp':
     case 'KeyW':
       if (heroCurrent.moving === false) {
-        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`
+        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`;
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
         gameMessages.innerHTML = '';
-        heroCurrent.lastMove = new Date;
+        heroCurrent.lastMove = new Date();
         firstAttackHappened.value = false;
         if (gameProgress.inProgress === false) {
           startGame();
@@ -95,18 +95,21 @@ export function heroMove(event: KeyboardEvent): void {
     case 'ArrowRight':
     case 'KeyD':
       if (heroCurrent.moving === false) {
-        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`
+        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`;
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
         gameMessages.innerHTML = '';
-        heroCurrent.lastMove = new Date;
+        heroCurrent.lastMove = new Date();
         firstAttackHappened.value = false;
         if (gameProgress.inProgress === false) {
           startGame();
           gameProgress.inProgress = true;
         }
-        if (heroCurrent.pixelX === canvasH.width - 50 || map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall) {
+        if (
+          heroCurrent.pixelX === canvasH.width - 50 ||
+          map[heroCurrent.positionY][heroCurrent.positionX + 1] === wall
+        ) {
           ctxH.drawImage(heroRight, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
         } else {
           ctxH.drawImage(heroRight, heroCurrent.pixelX + 50, heroCurrent.pixelY, 50, 50);
@@ -131,12 +134,12 @@ export function heroMove(event: KeyboardEvent): void {
     case 'ArrowLeft':
     case 'KeyA':
       if (heroCurrent.moving === false) {
-        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`
+        alerts.innerHTML = `You are currently in battle. You can not move while in battle!`;
       } else {
         ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
         alerts.innerHTML = '';
         gameMessages.innerHTML = '';
-        heroCurrent.lastMove = new Date;
+        heroCurrent.lastMove = new Date();
         firstAttackHappened.value = false;
         if (gameProgress.inProgress === false) {
           startGame();
@@ -165,9 +168,9 @@ export function heroMove(event: KeyboardEvent): void {
       }
       break;
     case 'Space':
-      const sameTile: boolean = evaluateSameTile().sameTile;
-      if (sameTile === false) {
-        alerts.innerHTML = 'You can strike only if you are on the same tile as an enemy!'
+      const sameTileEnemy: SameTileEnemy = evaluateSameTile();
+      if (sameTileEnemy.sameTile === false) {
+        alerts.innerHTML = 'You can strike only if you are on the same tile as an enemy!';
       }
       break;
     default:
