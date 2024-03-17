@@ -21,32 +21,27 @@ export function showHeroStats(): void {
   heroStrikeP.innerHTML = `${heroCurrent.strikePoint}`;
 }
 
-type SameTileEnemy = {
+export type SameTileEnemy = {
   sameTile: boolean;
   currentEnemy: Character;
 };
 
-export function evaluateSameTile(
-  enemy1: Character,
-  enemy2: Character,
-  enemy3: Character,
-  enemy4: Character,
-): SameTileEnemy {
+export function evaluateSameTile(): SameTileEnemy {
   const sameTileEnemy: SameTileEnemy = {
     sameTile: false,
     currentEnemy: {} as Character,
   };
-  if (heroCurrent.positionX === enemy1.positionX && heroCurrent.positionY === enemy1.positionY) {
-    sameTileEnemy.currentEnemy = enemy1;
+  if (heroCurrent.positionX === skeleton1Current.positionX && heroCurrent.positionY === skeleton1Current.positionY) {
+    sameTileEnemy.currentEnemy = skeleton1Current;
     sameTileEnemy.sameTile = true;
-  } else if (heroCurrent.positionX === enemy2.positionX && heroCurrent.positionY === enemy2.positionY) {
-    sameTileEnemy.currentEnemy = enemy2;
+  } else if (heroCurrent.positionX === skeleton2Current.positionX && heroCurrent.positionY === skeleton2Current.positionY) {
+    sameTileEnemy.currentEnemy = skeleton2Current;
     sameTileEnemy.sameTile = true;
-  } else if (heroCurrent.positionX === enemy3.positionX && heroCurrent.positionY === enemy3.positionY) {
-    sameTileEnemy.currentEnemy = enemy3;
+  } else if (heroCurrent.positionX === skeleton3Current.positionX && heroCurrent.positionY === skeleton3Current.positionY) {
+    sameTileEnemy.currentEnemy = skeleton3Current;
     sameTileEnemy.sameTile = true;
-  } else if (heroCurrent.positionX === enemy4.positionX && heroCurrent.positionY === enemy4.positionY) {
-    sameTileEnemy.currentEnemy = enemy4;
+  } else if (heroCurrent.positionX === bossCurrent.positionX && heroCurrent.positionY === bossCurrent.positionY) {
+    sameTileEnemy.currentEnemy = bossCurrent;
     sameTileEnemy.sameTile = true;
   } else {
     sameTileEnemy.sameTile = false;
@@ -55,12 +50,7 @@ export function evaluateSameTile(
 }
 
 export function showEnemyStats(): void {
-  const sameTileEnemy: SameTileEnemy = evaluateSameTile(
-    skeleton1Current,
-    skeleton2Current,
-    skeleton3Current,
-    bossCurrent,
-  );
+  const sameTileEnemy: SameTileEnemy = evaluateSameTile();
   const enemyStats = document.getElementById('enemyStats') as HTMLElement;
   const enemyName = document.getElementById('enemyName') as HTMLElement;
   const enemyLevel = document.getElementById('enemyLevel') as HTMLElement;
@@ -72,16 +62,25 @@ export function showEnemyStats(): void {
 
   if (sameTileEnemy.sameTile === true) {
     enemyCurrent = sameTileEnemy.currentEnemy;
-    if (enemyStats.style.display === 'none') {
-      enemyName.innerHTML = `${enemyCurrent.name}`;
-      enemyLevel.innerHTML = `${enemyCurrent.level}`;
-      enemyCurrentHP.innerHTML = `${enemyCurrent.currentHealth}`;
-      enemyMaxHP.innerHTML = `${enemyCurrent.maxHealth}`;
-      enemyDefenseP.innerHTML = `${enemyCurrent.defensePoint}`;
-      enemyStrikeP.innerHTML = `${enemyCurrent.strikePoint}`;
-      enemyStats.style.display = 'flex';
+    if (enemyCurrent.alive === true) {
+      if (enemyStats.style.display === 'none') {
+        enemyName.innerHTML = `${enemyCurrent.name}`;
+        enemyLevel.innerHTML = `${enemyCurrent.level}`;
+        enemyCurrentHP.innerHTML = `${enemyCurrent.currentHealth}`;
+        enemyMaxHP.innerHTML = `${enemyCurrent.maxHealth}`;
+        enemyDefenseP.innerHTML = `${enemyCurrent.defensePoint}`;
+        enemyStrikeP.innerHTML = `${enemyCurrent.strikePoint}`;
+        enemyStats.style.display = 'flex';
+      }
+    } else {
+      enemyStats.style.display = 'none'
     }
   } else {
     enemyStats.style.display = 'none';
   }
+}
+
+export function hideEnemyStats(): void {
+  const enemyStats = document.getElementById('enemyStats') as HTMLElement;
+  enemyStats.style.display = 'none';
 }
