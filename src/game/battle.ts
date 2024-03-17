@@ -1,4 +1,11 @@
-import { heroCurrent, Character } from './characters.ts';
+import {
+  heroCurrent,
+  skeleton1Current,
+  skeleton2Current,
+  skeleton3Current,
+  bossCurrent,
+  Character,
+} from './characters.ts';
 import { randomNumberMinMax } from './enemySpawn.ts';
 import { SameTileEnemy, evaluateSameTile, hideEnemyStats } from './showStats.ts';
 import { herosTurn, counting, heroStrikeCountdown, BooleanObject, interval } from './battleHero.ts';
@@ -54,7 +61,13 @@ export function killCharacter(character: Character): void {
     heroCurrent.moving = true;
     firstAttackHappened.value = false;
     if (character.name === 'Hero') {
-      gameMessages.innerHTML = `Game over! ${character.name} has been defeated!`;
+      heroCurrent.moving = false;
+      skeleton1Current.moving = false;
+      skeleton2Current.moving = false;
+      skeleton3Current.moving = false;
+      bossCurrent.moving = false;
+      heroCurrent.alive = false;
+      gameMessages.innerHTML = `Game over! The Hero died!`;
     } else {
       hideEnemyStats();
       gameMessages.innerHTML = `${character.name} has been defeated!`;

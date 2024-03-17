@@ -26,6 +26,9 @@ export function evaluateDirection(
   if (enemy.alive === false) {
     return 'dead';
   }
+  if (heroCurrent.alive === false) {
+    return 'gameOver';
+  }
   if (enemy.positionX === heroCurrent.positionX && enemy.positionY === heroCurrent.positionY) {
     enemy.moving = false;
     heroCurrent.moving = false;
@@ -139,6 +142,9 @@ export function moveEnemy(
       if (firstAttackHappened.value === false) {
         battle();
       }
+      break;
+    case 'gameOver':
+      ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY, 50, 50);
       break;
     case 'dead':
       break;
