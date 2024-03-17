@@ -1,6 +1,6 @@
 import { heroCurrent, Character } from './characters.ts';
-import { isStrikeSuccessful, killCharacter } from './battle.ts';
-import { herosTurn, counting, heroStrikeCountdown } from './battleHero.ts';
+import { isStrikeSuccessful, killCharacter, battle } from './battle.ts';
+import { herosTurn, counting } from './battleHero.ts';
 
 export function enemyStrike(currentEnemy: Character): void {
   const gameMessages = document.getElementById('gameMessages') as HTMLElement;
@@ -14,8 +14,8 @@ export function enemyStrike(currentEnemy: Character): void {
     gameMessages.innerHTML = `${currentEnemy.name} is attacking now.`;
     setTimeout(() => {
       if (strikeSuccessful === true) {
-        currentEnemy.lastMove = new Date;
-        const newHealth: number = heroCurrent.currentHealth -= healthToDedact;
+        currentEnemy.lastMove = new Date();
+        const newHealth: number = (heroCurrent.currentHealth -= healthToDedact);
         if (newHealth < 0) {
           heroCurrent.currentHealth = 0;
         } else {
@@ -27,15 +27,15 @@ export function enemyStrike(currentEnemy: Character): void {
         setTimeout(() => {
           herosTurn.value = true;
           counting.value = true;
-          heroStrikeCountdown();
+          battle();
         }, 2500);
       } else {
-        currentEnemy.lastMove = new Date;
+        currentEnemy.lastMove = new Date();
         gameMessages.innerHTML = `The strike from ${currentEnemy.name} was not successful. Get ready to attack!`;
         setTimeout(() => {
           herosTurn.value = true;
           counting.value = true;
-          heroStrikeCountdown();
+          battle();
         }, 2500);
       }
     }, 2500);
