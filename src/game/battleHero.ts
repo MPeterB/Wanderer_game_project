@@ -63,7 +63,7 @@ export function heroStrike(event: KeyboardEvent): void {
             sameTileEnemy.currentEnemy.currentHealth -= healthToDedact;
             enemyCurrentHP.innerHTML = `${sameTileEnemy.currentEnemy.currentHealth}`;
             gameMessages.innerHTML = `You striked ${sameTileEnemy.currentEnemy.name} successfully!`;
-            killCharacter(sameTileEnemy.currentEnemy);
+            killCharacter(sameTileEnemy.currentEnemy, heroCurrent);
           } else {
             heroCurrent.lastMove = new Date();
             gameMessages.innerHTML = `Your strike at ${sameTileEnemy.currentEnemy.name} was not successful!`;
