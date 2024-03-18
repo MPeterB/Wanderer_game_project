@@ -82,11 +82,12 @@ canvas {
   z-index: 10;
 }
 
-.alertBox {
+#alertBox {
   width: 500px;
   min-height: 50px;
   margin: auto;
   margin-top: 10px;
+  display: block;
 }
 
 #gameMessages {
@@ -113,7 +114,7 @@ canvas {
   color: red;
 }
 
-.stats-container {
+#stats-container {
   width: 500px;
   margin: auto;
   display: flex;

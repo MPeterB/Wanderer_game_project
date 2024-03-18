@@ -49,28 +49,44 @@ export function isStrikeSuccessful(attacker: Character, defender: Character): [b
   return [strikeSuccessful, strikeValue];
 }
 
-export function killCharacter(character: Character): void {
+export function killCharacter(
+  characterToKill: Character, 
+  killingCharacter: Character,
+): void {
   const gameMessages = document.getElementById('gameMessages') as HTMLElement;
+  const gameOverScreen = document.getElementById('gameOverScreen') as HTMLElement;
+  const alertBox = document.getElementById('alertBox') as HTMLElement;
+  const statsContainer = document.getElementById('stats-container') as HTMLElement;
+  const heroKillerName = document.getElementById('heroKillerName') as HTMLElement;
 
   counting.value = false;
   clearInterval(interval);
 
-  if (character.currentHealth <= 0) {
+  if (characterToKill.currentHealth <= 0) {
     counting.value = true;
-    character.alive = false;
+    characterToKill.alive = false;
     heroCurrent.moving = true;
     firstAttackHappened.value = false;
-    if (character.name === 'Hero') {
+    if (characterToKill.name === 'Hero') {
       heroCurrent.moving = false;
       skeleton1Current.moving = false;
       skeleton2Current.moving = false;
       skeleton3Current.moving = false;
       bossCurrent.moving = false;
       heroCurrent.alive = false;
-      gameMessages.innerHTML = `Game over! The Hero died!`;
+      gameMessages.innerHTML = `${killingCharacter.name} striked Hero successfully.`;
+      setTimeout(() => {
+        gameMessages.innerHTML = `Game over! The Hero died!`;
+      }, 2000);
+      setTimeout(() => {
+        heroKillerName.innerHTML = `${killingCharacter.name}`;
+        gameOverScreen.style.display = 'block';
+        alertBox.style.display = 'none';
+        statsContainer.style.display = 'none';
+      }, 4000);
     } else {
       hideEnemyStats();
-      gameMessages.innerHTML = `${character.name} has been defeated!`;
+      gameMessages.innerHTML = `${characterToKill.name} has been defeated!`;
     }
   } else {
     firstAttackHappened.value = true;
