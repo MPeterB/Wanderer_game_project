@@ -6,9 +6,9 @@ import {
   bossCurrent,
   Character,
 } from './characters.ts';
-import { randomNumberMinMax } from './game.ts';
+import { BooleanObject, randomNumberMinMax } from './game.ts';
 import { SameTileEnemy, evaluateSameTile, hideEnemyStats } from './showStats.ts';
-import { herosTurn, counting, heroStrikeCountdown, BooleanObject, interval } from './battleHero.ts';
+import { herosTurn, counting, heroStrikeCountdown, interval } from './battleHero.ts';
 import { enemyStrike } from './battleEnemy.ts';
 
 export const firstAttackHappened: BooleanObject = {

@@ -1,10 +1,7 @@
 import { heroCurrent } from './characters.ts';
+import { BooleanObject } from './game.ts';
 import { SameTileEnemy, evaluateSameTile } from './showStats.ts';
 import { isStrikeSuccessful, killCharacter, battle, firstAttackHappened } from './battle.ts';
-
-export type BooleanObject = {
-  value: boolean;
-};
 
 export const herosTurn: BooleanObject = {
   value: true,

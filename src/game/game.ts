@@ -1,11 +1,10 @@
 import { moveEnemies } from './enemy.ts';
 
-type GameProgress = {
-  inProgress: boolean;
+export type BooleanObject = {
+  value: boolean;
 };
-
-export const gameProgress: GameProgress = {
-  inProgress: false,
+export const gameInProgress: BooleanObject = {
+  value: false,
 };
 
 export function randomNumberMinMax(min: number, max: number): number {
