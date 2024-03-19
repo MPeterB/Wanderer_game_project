@@ -17,16 +17,26 @@
       <img id="skeleton" src="skeleton.png">
       <img id="boss" src="boss.png">
     </div>
+    <div class="screen-container">
+      <div id="gameOverScreen">
+        <h1>Game over!</h1>
+        <h2 class="message">The Hero was defeated by</h2>
+        <h2 id="heroKillerName">XY</h2>
+        <h3>If you want to play more, you have to start over the game.</h3>
+        <h3>You can do that by clicking the button below.</h3>
+        <button onClick="window.location.reload()">Start again</button>
+      </div>
+    </div>
     <div class="canvas-container">
       <canvas width="500" height="500" class="map-canvas"></canvas>
       <canvas width="500" height="500" class="hero-canvas"></canvas>
       <canvas width="500" height="500" class="enemy-canvas"></canvas>
     </div>
-    <div class="alertBox">
+    <div id="alertBox">
       <p id="gameMessages"></p>
       <p id="alerts"></p>
     </div>
-    <div class="stats-container">
+    <div id="stats-container">
       <div id="heroStats">
         <h2>Hero</h2>
         <div><h3>Level:</h3>&nbsp;<h3 id="heroLevel">1</h3></div>

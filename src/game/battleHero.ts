@@ -53,25 +53,27 @@ export function heroStrike(event: KeyboardEvent): void {
   const gameMessages = document.getElementById('gameMessages') as HTMLElement;
   const alerts = document.getElementById('alerts') as HTMLElement;
 
-  if(sameTileEnemy.sameTile === true) {
-    if (event.code === 'Space') {
-      if (herosTurn.value === true) {
-        counting.value = false;
-        if (strikeSuccessful === true) {
-          heroCurrent.lastMove = new Date();
-          sameTileEnemy.currentEnemy.currentHealth -= healthToDedact;
-          enemyCurrentHP.innerHTML = `${sameTileEnemy.currentEnemy.currentHealth}`;
-          gameMessages.innerHTML = `You striked ${sameTileEnemy.currentEnemy.name} successfully!`;
-          killCharacter(sameTileEnemy.currentEnemy);
+  if (heroCurrent.alive === true) {
+    if(sameTileEnemy.sameTile === true) {
+      if (event.code === 'Space') {
+        if (herosTurn.value === true) {
+          counting.value = false;
+          if (strikeSuccessful === true) {
+            heroCurrent.lastMove = new Date();
+            sameTileEnemy.currentEnemy.currentHealth -= healthToDedact;
+            enemyCurrentHP.innerHTML = `${sameTileEnemy.currentEnemy.currentHealth}`;
+            gameMessages.innerHTML = `You striked ${sameTileEnemy.currentEnemy.name} successfully!`;
+            killCharacter(sameTileEnemy.currentEnemy, heroCurrent);
+          } else {
+            heroCurrent.lastMove = new Date();
+            gameMessages.innerHTML = `Your strike at ${sameTileEnemy.currentEnemy.name} was not successful!`;
+          }
+          setTimeout(() => {
+            battle();
+          }, 2500);
         } else {
-          heroCurrent.lastMove = new Date();
-          gameMessages.innerHTML = `Your strike at ${sameTileEnemy.currentEnemy.name} was not successful!`;
+          alerts.innerHTML = 'You can not attack now! Wait for the enemy to finish their turn!';
         }
-        setTimeout(() => {
-          battle();
-        }, 2500);
-      } else {
-        alerts.innerHTML = 'You can not attack now! Wait for the enemy to finish their turn!';
       }
     }
   }

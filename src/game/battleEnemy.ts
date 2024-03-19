@@ -23,7 +23,7 @@ export function enemyStrike(currentEnemy: Character): void {
         }
         heroCurrentHP.innerHTML = `${heroCurrent.currentHealth}`;
         gameMessages.innerHTML = `${currentEnemy.name} striked Hero successfully. Get ready to attack!`;
-        killCharacter(heroCurrent);
+        killCharacter(heroCurrent, currentEnemy);
         setTimeout(() => {
           herosTurn.value = true;
           counting.value = true;
