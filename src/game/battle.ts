@@ -6,7 +6,7 @@ import {
   bossCurrent,
   Character,
 } from './characters.ts';
-import { randomNumberMinMax } from './enemySpawn.ts';
+import { randomNumberMinMax } from './game.ts';
 import { SameTileEnemy, evaluateSameTile, hideEnemyStats } from './showStats.ts';
 import { herosTurn, counting, heroStrikeCountdown, BooleanObject, interval } from './battleHero.ts';
 import { enemyStrike } from './battleEnemy.ts';
@@ -58,6 +58,10 @@ export function killCharacter(
   const alertBox = document.getElementById('alertBox') as HTMLElement;
   const statsContainer = document.getElementById('stats-container') as HTMLElement;
   const heroKillerName = document.getElementById('heroKillerName') as HTMLElement;
+  const heroLevel = document.getElementById('heroLevel') as HTMLElement;
+  const heroMaxHP = document.getElementById('heroMaxHP') as HTMLElement;
+  const heroDefenseP = document.getElementById('heroDefenseP') as HTMLElement;
+  const heroStrikeP = document.getElementById('heroStrikeP') as HTMLElement;
 
   counting.value = false;
   clearInterval(interval);
@@ -86,7 +90,15 @@ export function killCharacter(
       }, 4000);
     } else {
       hideEnemyStats();
-      gameMessages.innerHTML = `${characterToKill.name} has been defeated!`;
+      heroCurrent.level += 1;
+      heroCurrent.maxHealth += randomNumberMinMax(1, 6);
+      heroCurrent.defensePoint += randomNumberMinMax(1, 6);
+      heroCurrent.strikePoint += randomNumberMinMax(1, 6);
+      heroLevel.innerHTML = `${heroCurrent.level}`;
+      heroMaxHP.innerHTML = `${heroCurrent.maxHealth}`;
+      heroDefenseP.innerHTML = `${heroCurrent.defensePoint}`;
+      heroStrikeP.innerHTML = `${heroCurrent.strikePoint}`;
+      gameMessages.innerHTML = `${characterToKill.name} has been defeated! Hero gained a level.`;
     }
   } else {
     firstAttackHappened.value = true;
