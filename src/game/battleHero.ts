@@ -54,7 +54,7 @@ export function heroStrike(event: KeyboardEvent): void {
   const alerts = document.getElementById('alerts') as HTMLElement;
 
   if (heroCurrent.alive === true) {
-    if(sameTileEnemy.sameTile === true) {
+    if (sameTileEnemy.sameTile === true) {
       if (event.code === 'Space') {
         if (herosTurn.value === true) {
           counting.value = false;
