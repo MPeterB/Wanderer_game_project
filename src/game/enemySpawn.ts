@@ -2,12 +2,7 @@ import { ctxE } from './enemy.ts';
 import { Character } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
-
-export function randomNumberMinMax(min: number, max: number) {
-  const minCeiled = Math.ceil(min);
-  const maxFloored = Math.floor(max);
-  return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
-}
+import { randomNumberMinMax } from './game.ts';
 
 export function randomPosition(): Character {
   const enemy = {} as Character;
