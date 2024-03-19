@@ -31,16 +31,27 @@ export function evaluateSameTile(): SameTileEnemy {
     sameTile: false,
     currentEnemy: {} as Character,
   };
-  if (heroCurrent.positionX === skeleton1Current.positionX && heroCurrent.positionY === skeleton1Current.positionY) {
+  if (heroCurrent.positionX === skeleton1Current.positionX &&
+    heroCurrent.positionY === skeleton1Current.positionY
+  ) {
     sameTileEnemy.currentEnemy = skeleton1Current;
     sameTileEnemy.sameTile = true;
-  } else if (heroCurrent.positionX === skeleton2Current.positionX && heroCurrent.positionY === skeleton2Current.positionY) {
+  } else if (
+    heroCurrent.positionX === skeleton2Current.positionX &&
+    heroCurrent.positionY === skeleton2Current.positionY
+  ) {
     sameTileEnemy.currentEnemy = skeleton2Current;
     sameTileEnemy.sameTile = true;
-  } else if (heroCurrent.positionX === skeleton3Current.positionX && heroCurrent.positionY === skeleton3Current.positionY) {
+  } else if (
+    heroCurrent.positionX === skeleton3Current.positionX &&
+    heroCurrent.positionY === skeleton3Current.positionY
+  ) {
     sameTileEnemy.currentEnemy = skeleton3Current;
     sameTileEnemy.sameTile = true;
-  } else if (heroCurrent.positionX === bossCurrent.positionX && heroCurrent.positionY === bossCurrent.positionY) {
+  } else if (
+    heroCurrent.positionX === bossCurrent.positionX &&
+    heroCurrent.positionY === bossCurrent.positionY
+  ) {
     sameTileEnemy.currentEnemy = bossCurrent;
     sameTileEnemy.sameTile = true;
   } else {
@@ -73,7 +84,7 @@ export function showEnemyStats(): void {
         enemyStats.style.display = 'flex';
       }
     } else {
-      enemyStats.style.display = 'none'
+      enemyStats.style.display = 'none';
     }
   } else {
     enemyStats.style.display = 'none';

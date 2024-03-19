@@ -1,4 +1,4 @@
-import { randomNumberMinMax } from './enemySpawn.ts';
+import { randomNumberMinMax } from './game.ts';
 
 const heroMaxHealth = 20 + 3 * randomNumberMinMax(1, 6);
 const enemy1MaxHealth = 2 * randomNumberMinMax(1, 6);
