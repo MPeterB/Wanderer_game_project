@@ -6,7 +6,7 @@ import {
   bossCurrent,
   Character,
 } from './characters.ts';
-import { BooleanObject, randomNumberMinMax } from './game.ts';
+import { BooleanObject, randomNumberMinMax, wonLevel } from './game.ts';
 import { SameTileEnemy, evaluateSameTile, hideEnemyStats } from './showStats.ts';
 import { herosTurn, counting, heroStrikeCountdown, interval } from './battleHero.ts';
 import { enemyStrike } from './battleEnemy.ts';
@@ -77,7 +77,6 @@ export function killCharacter(
       skeleton2Current.moving = false;
       skeleton3Current.moving = false;
       bossCurrent.moving = false;
-      heroCurrent.alive = false;
       gameMessages.innerHTML = `${killingCharacter.name} striked Hero successfully.`;
       setTimeout(() => {
         gameMessages.innerHTML = `Game over! The Hero died!`;
@@ -98,7 +97,45 @@ export function killCharacter(
       heroMaxHP.innerHTML = `${heroCurrent.maxHealth}`;
       heroDefenseP.innerHTML = `${heroCurrent.defensePoint}`;
       heroStrikeP.innerHTML = `${heroCurrent.strikePoint}`;
+      
       gameMessages.innerHTML = `${characterToKill.name} has been defeated! Hero gained a level.`;
+      
+      function heroTakesKey(): void {
+        if (characterToKill.hasKey === true) {
+          characterToKill.hasKey = false;
+          heroCurrent.hasKey = true;
+        }
+      }
+
+      setTimeout(() => {
+        if (characterToKill.hasKey === false && characterToKill.name === 'Skeleton') {
+          gameMessages.innerHTML = `No key was found on this Skeleton. Keep looking!`;
+        }
+        if (heroCurrent.hasKey === false && characterToKill.name === 'Boss') {
+          gameMessages.innerHTML = 
+          'You have killed the Boss, ' +
+          'but to win the level you have to get the key from one of the Skeletons first!';
+        }
+        if (characterToKill.hasKey === true && bossCurrent.alive === true) {
+          heroTakesKey();
+          gameMessages.innerHTML =
+            'You have acquired the key to the next level. ' +
+            'To be able to use it, you have to kill the Boss first!';
+        }
+        if (characterToKill.hasKey === true && bossCurrent.alive === false) {
+          heroTakesKey();
+          wonLevel.value = true;
+          gameMessages.innerHTML =
+            'You have acquired the key to the next level, and the Boss is dead. ' +
+            'You have won this level. Use the key you ackquired to enter the next one!';
+        }
+        if (heroCurrent.hasKey === true && characterToKill.name === 'Boss') {
+          wonLevel.value = true;
+          gameMessages.innerHTML = 
+            'You have killed the Boss while holding the key to the next level. ' +
+            'You have won this level. Use the key you ackquired to enter the next one!';
+        }
+      }, 2500);
     }
   } else {
     firstAttackHappened.value = true;
