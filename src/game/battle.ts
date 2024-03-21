@@ -1,12 +1,5 @@
-import {
-  heroCurrent,
-  skeleton1Current,
-  skeleton2Current,
-  skeleton3Current,
-  bossCurrent,
-  Character,
-} from './characters.ts';
-import { BooleanObject, randomNumberMinMax, wonLevel } from './game.ts';
+import { heroCurrent, bossCurrent, Character } from './characters.ts';
+import { BooleanObject, randomNumberMinMax, winLevel } from './game.ts';
 import { SameTileEnemy, evaluateSameTile, hideEnemyStats } from './showStats.ts';
 import { herosTurn, counting, heroStrikeCountdown, interval } from './battleHero.ts';
 import { enemyStrike } from './battleEnemy.ts';
@@ -73,10 +66,6 @@ export function killCharacter(
     firstAttackHappened.value = false;
     if (characterToKill.name === 'Hero') {
       heroCurrent.moving = false;
-      skeleton1Current.moving = false;
-      skeleton2Current.moving = false;
-      skeleton3Current.moving = false;
-      bossCurrent.moving = false;
       gameMessages.innerHTML = `${killingCharacter.name} striked Hero successfully.`;
       setTimeout(() => {
         gameMessages.innerHTML = `Game over! The Hero died!`;
@@ -124,13 +113,13 @@ export function killCharacter(
         }
         if (characterToKill.hasKey === true && bossCurrent.alive === false) {
           heroTakesKey();
-          wonLevel.value = true;
+          winLevel();
           gameMessages.innerHTML =
             'You have acquired the key to the next level, and the Boss is dead. ' +
             'You have won this level. Use the key you ackquired to enter the next one!';
         }
         if (heroCurrent.hasKey === true && characterToKill.name === 'Boss') {
-          wonLevel.value = true;
+          winLevel();
           gameMessages.innerHTML = 
             'You have killed the Boss while holding the key to the next level. ' +
             'You have won this level. Use the key you ackquired to enter the next one!';
