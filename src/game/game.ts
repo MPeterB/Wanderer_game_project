@@ -1,5 +1,6 @@
 import { heroCurrent } from './characters.ts';
 import { moveEnemies } from './enemy.ts';
+import { levelUpEnemies } from './enemySpawn.ts';
 
 export type BooleanObject = {
   value: boolean;
@@ -29,6 +30,7 @@ export function winLevel() {
   const statsContainer = document.getElementById('stats-container') as HTMLElement;
   wonLevel.value = true;
   heroCurrent.moving = false;
+  levelUpEnemies();
   setTimeout(() => {
     wonLevelScreen.style.display = 'block';
     alertBox.style.display = 'none';

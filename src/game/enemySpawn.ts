@@ -4,6 +4,7 @@ import {
   skeleton1Current,
   skeleton2Current,
   skeleton3Current,
+  bossCurrent,
 } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
@@ -23,6 +24,24 @@ export function keyToRandomSkeleton(): void {
     default:
       skeleton1Current.hasKey = true;
   }
+}
+
+function levelUpEnemy(enemy: Character): void {
+  const currentLevel: number = enemy.level;
+  const nextLevel: number = currentLevel + 1;
+
+  enemy.level = nextLevel;
+  enemy.maxHealth = 2 * nextLevel * randomNumberMinMax(1, 6);
+  enemy.currentHealth = enemy.maxHealth;
+  enemy.defensePoint = nextLevel / 2 * randomNumberMinMax(1, 6);
+  enemy.strikePoint = nextLevel * randomNumberMinMax(1, 6);
+}
+
+export function levelUpEnemies(): void {
+ levelUpEnemy(skeleton1Current);
+ levelUpEnemy(skeleton2Current);
+ levelUpEnemy(skeleton3Current);
+ levelUpEnemy(bossCurrent);
 }
 
 export function randomPosition(): Character {
