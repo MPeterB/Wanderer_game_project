@@ -1,3 +1,4 @@
+import { heroCurrent } from './characters.ts';
 import { moveEnemies } from './enemy.ts';
 
 export type BooleanObject = {
@@ -7,6 +8,14 @@ export const gameInProgress: BooleanObject = {
   value: false,
 };
 
+export const wonLevel: BooleanObject = {
+  value: false,
+};
+
+export function startGame() {
+  moveEnemies();
+}
+
 export function randomNumberMinMax(min: number, max: number): number {
   const minCeiled: number = Math.ceil(min);
   const maxFloored: number = Math.floor(max);
@@ -14,6 +23,15 @@ export function randomNumberMinMax(min: number, max: number): number {
   return randomNumber;
 }
 
-export function startGame() {
-  moveEnemies();
+export function winLevel() {
+  const wonLevelScreen = document.getElementById('wonLevelScreen') as HTMLElement;
+  const alertBox = document.getElementById('alertBox') as HTMLElement;
+  const statsContainer = document.getElementById('stats-container') as HTMLElement;
+  wonLevel.value = true;
+  heroCurrent.moving = false;
+  setTimeout(() => {
+    wonLevelScreen.style.display = 'block';
+    alertBox.style.display = 'none';
+    statsContainer.style.display = 'none';
+  }, 5000);
 }
