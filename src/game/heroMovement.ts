@@ -1,7 +1,7 @@
 import { heroCurrent } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
-import { gameInProgress, startGame } from './game.ts';
+import { gameInProgress, startGame, wonLevel } from './game.ts';
 import { SameTileEnemy, evaluateSameTile, showEnemyStats } from './showStats.ts';
 import { battle, firstAttackHappened } from './battle.ts';
 
@@ -16,7 +16,7 @@ const alerts = document.getElementById('alerts') as HTMLElement;
 const gameMessages = document.getElementById('gameMessages') as HTMLElement;
 
 export function heroMove(event: KeyboardEvent): void {
-  if (heroCurrent.alive === true) {
+  if (heroCurrent.alive === true && wonLevel.value === false) {
     switch (event.code) {
       case 'ArrowDown':
       case 'KeyS':

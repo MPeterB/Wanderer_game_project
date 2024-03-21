@@ -1,5 +1,5 @@
 import { heroCurrent } from './characters.ts';
-import { BooleanObject } from './game.ts';
+import { BooleanObject, wonLevel } from './game.ts';
 import { SameTileEnemy, evaluateSameTile } from './showStats.ts';
 import { isStrikeSuccessful, killCharacter, battle, firstAttackHappened } from './battle.ts';
 
@@ -50,7 +50,7 @@ export function heroStrike(event: KeyboardEvent): void {
   const gameMessages = document.getElementById('gameMessages') as HTMLElement;
   const alerts = document.getElementById('alerts') as HTMLElement;
 
-  if (heroCurrent.alive === true) {
+  if (heroCurrent.alive === true && wonLevel.value === false) {
     if (sameTileEnemy.sameTile === true) {
       if (event.code === 'Space') {
         if (herosTurn.value === true) {
