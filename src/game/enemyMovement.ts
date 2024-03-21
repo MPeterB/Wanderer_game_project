@@ -4,6 +4,7 @@ import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { showEnemyStats } from './showStats.ts';
 import { battle, firstAttackHappened } from './battle.ts';
+import { wonLevel } from './game.ts';
 
 const directions: string[] = ['down', 'up', 'right', 'left'];
 
@@ -25,6 +26,9 @@ export function evaluateDirection(
   const alerts = document.getElementById('alerts') as HTMLElement;
   if (enemy.alive === false) {
     return 'dead';
+  }
+  if (wonLevel.value === true) {
+    return 'wonLevel';
   }
   if (heroCurrent.alive === false) {
     return 'gameOver';
@@ -144,6 +148,7 @@ export function moveEnemy(
       }
       break;
     case 'gameOver':
+    case 'wonLevel':
       ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY, 50, 50);
       break;
     case 'dead':
