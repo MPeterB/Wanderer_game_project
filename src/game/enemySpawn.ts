@@ -1,8 +1,29 @@
 import { ctxE } from './enemy.ts';
-import { Character } from './characters.ts';
+import {
+  Character,
+  skeleton1Current,
+  skeleton2Current,
+  skeleton3Current,
+} from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
 import { randomNumberMinMax } from './game.ts';
+
+export function keyToRandomSkeleton(): void {
+  switch (randomNumberMinMax(1, 3)) {
+    case 1:
+      skeleton1Current.hasKey = true;
+      break;
+    case 2:
+      skeleton2Current.hasKey = true;
+      break;
+    case 3:
+      skeleton3Current.hasKey = true;
+      break;
+    default:
+      skeleton1Current.hasKey = true;
+  }
+}
 
 export function randomPosition(): Character {
   const enemy = {} as Character;

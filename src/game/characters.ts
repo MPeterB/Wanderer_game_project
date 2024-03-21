@@ -20,6 +20,7 @@ export type Character = {
   strikePoint: number;
   moving: boolean;
   alive: boolean;
+  hasKey: boolean;
 };
 
 export const heroCurrent: Character = {
@@ -36,6 +37,7 @@ export const heroCurrent: Character = {
   strikePoint: 5 + randomNumberMinMax(1, 6),
   moving: true,
   alive: true,
+  hasKey: false,
 };
 
 export const skeleton1Current: Character = {
@@ -52,6 +54,7 @@ export const skeleton1Current: Character = {
   strikePoint: randomNumberMinMax(1, 6),
   moving: true,
   alive: true,
+  hasKey: false,
 };
 
 export const skeleton2Current: Character = {
@@ -68,6 +71,7 @@ export const skeleton2Current: Character = {
   strikePoint: randomNumberMinMax(1, 6),
   moving: true,
   alive: true,
+  hasKey: false,
 };
 
 export const skeleton3Current: Character = {
@@ -84,6 +88,7 @@ export const skeleton3Current: Character = {
   strikePoint: randomNumberMinMax(1, 6),
   moving: true,
   alive: true,
+  hasKey: false,
 };
 
 export const bossCurrent: Character = {
@@ -100,4 +105,5 @@ export const bossCurrent: Character = {
   strikePoint: randomNumberMinMax(1, 6) + 1,
   moving: true,
   alive: true,
+  hasKey: false,
 };

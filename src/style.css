@@ -22,7 +22,33 @@ body {
   justify-content: center;
 }
 
-#gameOverScreen {
+.screen-container h1 {
+  font-size: 50px;
+  margin-top: 50px;
+}
+
+.screen-container .instruction {
+  margin-top: 50px;
+}
+
+.screen-container .message {
+  margin-top: 50px;
+}
+
+.screen-container button {
+  cursor: pointer;
+  margin-top: 25px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.screen-container button:hover {
+  background-color: rgb(226, 225, 225);
+}
+
+#gameOverScreen,
+#wonLevelScreen {
   width: 500px;
   height: 500px;
   background: rgb(255, 255, 255, 0.8);
@@ -33,27 +59,6 @@ body {
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   display: none;
-}
-
-#gameOverScreen h1 {
-  font-size: 50px;
-  margin-top: 50px;
-}
-
-#gameOverScreen .message {
-  margin-top: 100px;
-}
-
-#gameOverScreen button {
-  cursor: pointer;
-  margin-top: 25px;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 10px;
-}
-
-#gameOverScreen button:hover {
-  background-color: rgb(226, 225, 225);
 }
 
 .canvas-container {

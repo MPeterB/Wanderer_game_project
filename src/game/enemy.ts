@@ -4,7 +4,7 @@ import {
   skeleton3Current,
   bossCurrent,
 } from './characters.ts';
-import { drawEnemy } from './enemySpawn.ts';
+import { drawEnemy, keyToRandomSkeleton } from './enemySpawn.ts';
 import { moveEnemy } from './enemyMovement.ts';
 
 export const canvasE = document.querySelector('.enemy-canvas') as HTMLCanvasElement;
@@ -14,6 +14,7 @@ export const skeleton = document.getElementById('skeleton') as HTMLImageElement;
 export const boss = document.getElementById('boss') as HTMLImageElement;
 
 export function drawEnemies(): void {
+  keyToRandomSkeleton();
   drawEnemy(skeleton, skeleton1Current, skeleton2Current, skeleton3Current, bossCurrent);
   drawEnemy(skeleton, skeleton2Current, skeleton1Current, skeleton3Current, bossCurrent);
   drawEnemy(skeleton, skeleton3Current, skeleton1Current, skeleton2Current, bossCurrent);

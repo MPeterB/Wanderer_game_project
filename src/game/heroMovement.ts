@@ -1,7 +1,7 @@
 import { heroCurrent } from './characters.ts';
 import { map } from './map.ts';
 import { wall } from './tiles.ts';
-import { gameProgress, startGame } from './game.ts';
+import { gameInProgress, startGame, wonLevel } from './game.ts';
 import { SameTileEnemy, evaluateSameTile, showEnemyStats } from './showStats.ts';
 import { battle, firstAttackHappened } from './battle.ts';
 
@@ -16,7 +16,7 @@ const alerts = document.getElementById('alerts') as HTMLElement;
 const gameMessages = document.getElementById('gameMessages') as HTMLElement;
 
 export function heroMove(event: KeyboardEvent): void {
-  if (heroCurrent.alive === true) {
+  if (heroCurrent.alive === true && wonLevel.value === false) {
     switch (event.code) {
       case 'ArrowDown':
       case 'KeyS':
@@ -28,9 +28,9 @@ export function heroMove(event: KeyboardEvent): void {
           gameMessages.innerHTML = '';
           heroCurrent.lastMove = new Date();
           firstAttackHappened.value = false;
-          if (gameProgress.inProgress === false) {
+          if (gameInProgress.value === false) {
             startGame();
-            gameProgress.inProgress = true;
+            gameInProgress.value = true;
           }
           if (
             heroCurrent.pixelY === canvasH.height - 50 ||
@@ -67,9 +67,9 @@ export function heroMove(event: KeyboardEvent): void {
           gameMessages.innerHTML = '';
           heroCurrent.lastMove = new Date();
           firstAttackHappened.value = false;
-          if (gameProgress.inProgress === false) {
+          if (gameInProgress.value === false) {
             startGame();
-            gameProgress.inProgress = true;
+            gameInProgress.value = true;
           }
           if (heroCurrent.pixelY === 0 || map[heroCurrent.positionY - 1][heroCurrent.positionX] === wall) {
             ctxH.drawImage(heroUp, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
@@ -103,9 +103,9 @@ export function heroMove(event: KeyboardEvent): void {
           gameMessages.innerHTML = '';
           heroCurrent.lastMove = new Date();
           firstAttackHappened.value = false;
-          if (gameProgress.inProgress === false) {
+          if (gameInProgress.value === false) {
             startGame();
-            gameProgress.inProgress = true;
+            gameInProgress.value = true;
           }
           if (
             heroCurrent.pixelX === canvasH.width - 50 ||
@@ -142,9 +142,9 @@ export function heroMove(event: KeyboardEvent): void {
           gameMessages.innerHTML = '';
           heroCurrent.lastMove = new Date();
           firstAttackHappened.value = false;
-          if (gameProgress.inProgress === false) {
+          if (gameInProgress.value === false) {
             startGame();
-            gameProgress.inProgress = true;
+            gameInProgress.value = true;
           }
           if (heroCurrent.pixelX === 0 || map[heroCurrent.positionY][heroCurrent.positionX - 1] === wall) {
             ctxH.drawImage(heroLeft, heroCurrent.pixelX, heroCurrent.pixelY, 50, 50);
