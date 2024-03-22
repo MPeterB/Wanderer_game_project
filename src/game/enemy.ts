@@ -22,9 +22,10 @@ export function drawEnemies(): void {
 }
 
 const seconds: number = 1;
+export let moveInterval: number = 0;
 
 export function moveEnemies(): void {
-  setInterval(() => {
+  moveInterval = setInterval(() => {
     ctxE.clearRect(0, 0, canvasE.width, canvasE.height);
     moveEnemy(skeleton, skeleton1Current, skeleton2Current, skeleton3Current, bossCurrent);
     moveEnemy(skeleton, skeleton2Current, skeleton1Current, skeleton3Current, bossCurrent);
