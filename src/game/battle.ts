@@ -63,6 +63,7 @@ export function killCharacter(
   if (characterToKill.currentHealth <= 0) {
     counting.value = true;
     characterToKill.alive = false;
+    characterToKill.moving = true;
     heroCurrent.moving = true;
     firstAttackHappened.value = false;
     if (characterToKill.name === 'Hero') {

@@ -5,7 +5,7 @@ import { gameInProgress, startGame, wonLevel } from './game.ts';
 import { SameTileEnemy, evaluateSameTile, showEnemyStats } from './showStats.ts';
 import { battle, firstAttackHappened } from './battle.ts';
 
-const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
+export const canvasH = document.querySelector('.hero-canvas') as HTMLCanvasElement;
 export const ctxH = canvasH.getContext('2d') as CanvasRenderingContext2D;
 
 export const heroDown = document.getElementById('hero-down') as HTMLImageElement;

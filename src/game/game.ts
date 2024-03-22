@@ -1,6 +1,9 @@
-import { heroCurrent } from './characters.ts';
-import { moveEnemies, moveInterval } from './enemy.ts';
+import { bossCurrent, heroCurrent, skeleton1Current, skeleton2Current, skeleton3Current } from './characters.ts';
+import { drawEnemies, moveEnemies, moveInterval } from './enemy.ts';
 import { levelUpEnemies } from './enemySpawn.ts';
+import { drawMap, map } from './map.ts';
+import { canvasH, ctxH, heroDown } from './heroMovement.ts';
+import { showHeroStats } from './showStats.ts';
 
 export type BooleanObject = {
   value: boolean;
@@ -53,12 +56,14 @@ function heroHealthRestore(): void {
   }
 }
 
+const wonLevelScreen = document.getElementById('wonLevelScreen') as HTMLElement;
+const alertBox = document.getElementById('alertBox') as HTMLElement;
+const statsContainer = document.getElementById('stats-container') as HTMLElement;
+
 export function winLevel() {
-  const wonLevelScreen = document.getElementById('wonLevelScreen') as HTMLElement;
-  const alertBox = document.getElementById('alertBox') as HTMLElement;
-  const statsContainer = document.getElementById('stats-container') as HTMLElement;
   wonLevel.value = true;
   heroCurrent.moving = false;
+  gameInProgress.value = false;
   clearInterval(moveInterval)
   heroHealthRestore();
   levelUpEnemies();
@@ -67,4 +72,31 @@ export function winLevel() {
     alertBox.style.display = 'none';
     statsContainer.style.display = 'none';
   }, 5000);
+}
+
+export function nextLevel(): void {
+  const gameMessages = document.getElementById('gameMessages') as HTMLElement;
+  const alerts = document.getElementById('alerts') as HTMLElement;
+
+  gameMessages.innerHTML = `To start the game press one of the arrow or WASD buttons!`;
+  alerts.innerHTML = '';
+
+  ctxH.clearRect(0, 0, canvasH.width, canvasH.height);
+  drawMap(map);
+  heroCurrent.pixelX = 0;
+  heroCurrent.pixelY = 0;
+  heroCurrent.positionX = 0;
+  heroCurrent. positionY = 0;
+  ctxH.drawImage(heroDown, 0, 0, 50, 50);
+  showHeroStats();
+  drawEnemies();
+  wonLevelScreen.style.display = 'none';
+  alertBox.style.display = 'block';
+  statsContainer.style.display = 'flex';
+  wonLevel.value = false;
+  heroCurrent.moving = true;
+  skeleton1Current.alive = true;
+  skeleton2Current.alive = true;
+  skeleton3Current.alive = true;
+  bossCurrent.alive = true;
 }
