@@ -3,6 +3,7 @@ import { BooleanObject, randomNumberMinMax, winLevel } from './game.ts';
 import { SameTileEnemy, evaluateSameTile, hideEnemyStats } from './showStats.ts';
 import { herosTurn, counting, heroStrikeCountdown, interval } from './battleHero.ts';
 import { enemyStrike } from './battleEnemy.ts';
+import { moveInterval } from './enemy.ts';
 
 export const firstAttackHappened: BooleanObject = {
   value: false,
@@ -68,6 +69,7 @@ export function killCharacter(
       heroCurrent.moving = false;
       gameMessages.innerHTML = `${killingCharacter.name} striked Hero successfully.`;
       setTimeout(() => {
+        clearInterval(moveInterval)
         gameMessages.innerHTML = `Game over! The Hero died!`;
       }, 2000);
       setTimeout(() => {
