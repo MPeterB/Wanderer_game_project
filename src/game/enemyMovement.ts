@@ -40,9 +40,11 @@ export function evaluateDirection(
   }
   let tileWalkable: boolean = false;
   let evaluatedDirection: string = '';
+  let numberOfTries: number = 0;
 
   while (tileWalkable === false) {
     const chosenDirection = chooseDirection();
+    numberOfTries += 1;
     switch (chosenDirection) {
       case 'down':
         if (
@@ -56,6 +58,9 @@ export function evaluateDirection(
         } else {
           tileWalkable = true;
           evaluatedDirection = chosenDirection;
+        }
+        if (numberOfTries > 10) {
+          return 'stay';
         }
         break;
       case 'up':
@@ -71,6 +76,9 @@ export function evaluateDirection(
           tileWalkable = true;
           evaluatedDirection = chosenDirection;
         }
+        if (numberOfTries > 10) {
+          return 'stay';
+        }
         break;
       case 'right':
         if (
@@ -85,6 +93,9 @@ export function evaluateDirection(
           tileWalkable = true;
           evaluatedDirection = chosenDirection;
         }
+        if (numberOfTries > 10) {
+          return 'stay';
+        }
         break;
       case 'left':
         if (
@@ -98,6 +109,9 @@ export function evaluateDirection(
         } else {
           tileWalkable = true;
           evaluatedDirection = chosenDirection;
+        }
+        if (numberOfTries > 10) {
+          return 'stay';
         }
         break;
       default:
@@ -147,6 +161,7 @@ export function moveEnemy(
         battle();
       }
       break;
+    case 'stay':
     case 'gameOver':
     case 'wonLevel':
       ctxE.drawImage(enemyImage, enemy.pixelX, enemy.pixelY, 50, 50);
