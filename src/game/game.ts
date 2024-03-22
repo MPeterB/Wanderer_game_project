@@ -40,7 +40,7 @@ function heroHealthRestore(): void {
       if ((heroCurrent.currentHealth + maxRestorable) > heroCurrent.maxHealth) {
         heroCurrent.currentHealth = heroCurrent.maxHealth;
       } else {
-        heroCurrent.currentHealth = (heroCurrent.currentHealth + maxRestorable);
+        heroCurrent.currentHealth = Number((heroCurrent.currentHealth + maxRestorable).toFixed());
       }
       break;
     case 3:
@@ -48,7 +48,7 @@ function heroHealthRestore(): void {
       if ((heroCurrent.currentHealth + maxRestorable) > heroCurrent.maxHealth) {
         heroCurrent.currentHealth = heroCurrent.maxHealth;
       } else {
-        heroCurrent.currentHealth = (heroCurrent.currentHealth + maxRestorable);
+        heroCurrent.currentHealth = Number((heroCurrent.currentHealth + maxRestorable).toFixed());
       }
       break;
     default:
