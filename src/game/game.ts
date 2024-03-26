@@ -64,7 +64,7 @@ export function winLevel() {
   wonLevel.value = true;
   heroCurrent.moving = false;
   gameInProgress.value = false;
-  clearInterval(moveInterval)
+  clearInterval(moveInterval);
   heroHealthRestore();
   levelUpEnemies();
   setTimeout(() => {
@@ -86,7 +86,7 @@ export function nextLevel(): void {
   heroCurrent.pixelX = 0;
   heroCurrent.pixelY = 0;
   heroCurrent.positionX = 0;
-  heroCurrent. positionY = 0;
+  heroCurrent.positionY = 0;
   ctxH.drawImage(heroDown, 0, 0, 50, 50);
   showHeroStats();
   drawEnemies();

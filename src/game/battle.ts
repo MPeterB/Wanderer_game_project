@@ -57,6 +57,13 @@ export function killCharacter(
   const heroDefenseP = document.getElementById('heroDefenseP') as HTMLElement;
   const heroStrikeP = document.getElementById('heroStrikeP') as HTMLElement;
 
+  function heroTakesKey(): void {
+    if (characterToKill.hasKey === true) {
+      characterToKill.hasKey = false;
+      heroCurrent.hasKey = true;
+    }
+  }
+
   counting.value = false;
   clearInterval(interval);
 
@@ -70,7 +77,7 @@ export function killCharacter(
       heroCurrent.moving = false;
       gameMessages.innerHTML = `${killingCharacter.name} striked Hero successfully.`;
       setTimeout(() => {
-        clearInterval(moveInterval)
+        clearInterval(moveInterval);
         gameMessages.innerHTML = `Game over! The Hero died!`;
       }, 2000);
       setTimeout(() => {
@@ -89,24 +96,17 @@ export function killCharacter(
       heroMaxHP.innerHTML = `${heroCurrent.maxHealth}`;
       heroDefenseP.innerHTML = `${heroCurrent.defensePoint}`;
       heroStrikeP.innerHTML = `${heroCurrent.strikePoint}`;
-      
+
       gameMessages.innerHTML = `${characterToKill.name} has been defeated! Hero gained a level.`;
-      
-      function heroTakesKey(): void {
-        if (characterToKill.hasKey === true) {
-          characterToKill.hasKey = false;
-          heroCurrent.hasKey = true;
-        }
-      }
 
       setTimeout(() => {
         if (characterToKill.hasKey === false && characterToKill.name === 'Skeleton') {
           gameMessages.innerHTML = `No key was found on this Skeleton. Keep looking!`;
         }
         if (heroCurrent.hasKey === false && characterToKill.name === 'Boss') {
-          gameMessages.innerHTML = 
-          'You have killed the Boss, ' +
-          'but to win the level you have to get the key from one of the Skeletons first!';
+          gameMessages.innerHTML =
+            'You have killed the Boss, ' +
+            'but to win the level you have to get the key from one of the Skeletons first!';
         }
         if (characterToKill.hasKey === true && bossCurrent.alive === true) {
           heroTakesKey();
@@ -123,7 +123,7 @@ export function killCharacter(
         }
         if (heroCurrent.hasKey === true && characterToKill.name === 'Boss') {
           winLevel();
-          gameMessages.innerHTML = 
+          gameMessages.innerHTML =
             'You have killed the Boss while holding the key to the next level. ' +
             'You have won this level. Use the key you ackquired to enter the next one!';
         }
