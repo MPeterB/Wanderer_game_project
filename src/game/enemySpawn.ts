@@ -33,15 +33,15 @@ function levelUpEnemy(enemy: Character): void {
   enemy.level = nextLevel;
   enemy.maxHealth = 2 * nextLevel * randomNumberMinMax(1, 6);
   enemy.currentHealth = enemy.maxHealth;
-  enemy.defensePoint = nextLevel / 2 * randomNumberMinMax(1, 6);
+  enemy.defensePoint = (nextLevel / 2) * randomNumberMinMax(1, 6);
   enemy.strikePoint = nextLevel * randomNumberMinMax(1, 6);
 }
 
 export function levelUpEnemies(): void {
- levelUpEnemy(skeleton1Current);
- levelUpEnemy(skeleton2Current);
- levelUpEnemy(skeleton3Current);
- levelUpEnemy(bossCurrent);
+  levelUpEnemy(skeleton1Current);
+  levelUpEnemy(skeleton2Current);
+  levelUpEnemy(skeleton3Current);
+  levelUpEnemy(bossCurrent);
 }
 
 export function randomPosition(): Character {
