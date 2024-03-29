@@ -18,6 +18,40 @@
       <img id="boss" src="boss.png">
     </div>
     <div class="screen-container">
+      <div id="preGameScreen">
+        <h2>Welcome!</h2>
+        <p>
+          This is a hero based walking on tiles and killing monsters type of game.<br>
+          The Hero is controlled in a maze using the keyboard.
+          The Hero and Monsters have levels and stats depending on their levels. 
+          The goal is to reach the highest level
+          by killing the Boss and the Skeleton holding the key to the next level.
+        </p>
+        <img id="gameImage" src="game.png" alt="Image about the game">
+        <p>
+          You can move the Hero with the arrow buttons or with WASD on your keyboard.
+        </p>
+        <p>
+          When a character enters a tile which is occupied by an other, a battle forms.<br>
+          In battle, the characters can not move.<br>
+          The character entering the occupied tile is the attacker.<br>
+          If the attacker is a Monster, it will attack the Hero.<br>
+          If the attacker is the Hero, the player will have 5 seconds
+          to attack the Monster with pressing space on their keyboard.<br>
+          If during this 5 seconds the player does not attack,
+          the Monster will become the attacker and starts attacking the Hero.<br>
+          The attacker strikes on the defender, then the defender strikes
+          and this continues until one of the characters dies.
+        </p>
+        <a
+          href="https://github.com/MPeterB/typescript_tile-based_game"
+          title="https://github.com/MPeterB/typescript_tile-based_game"
+          target="_blank"
+        >
+        For further information click here!
+        </a><br>
+        <button id="goToGameButton">Go to the game</button>
+      </div>
       <div id="gameOverScreen">
         <h1>Game over!</h1>
         <h2 class="message">The Hero was defeated by</h2>
