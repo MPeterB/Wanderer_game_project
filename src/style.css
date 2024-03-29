@@ -47,6 +47,26 @@ body {
   background-color: rgb(226, 225, 225);
 }
 
+#preGameScreen {
+  height: 100%;
+  width: 500px;
+  text-align: center;
+  background-color: white;
+  display: block;
+}
+
+#preGameScreen h3 {
+  margin-top: 0;
+}
+
+#preGameScreen button {
+  margin-top: 30px;
+}
+
+a:hover {
+  color: green;
+}
+
 #gameOverScreen,
 #wonLevelScreen {
   width: 500px;

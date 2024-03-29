@@ -8,10 +8,11 @@
 - Visual Studio Code
 
 # About the project
-This is a hero based walking on tiles and killing monsters type of game. The hero 
-is controlled in a maze using the keyboard. The Hero and monsters have levels and
-stats depending on their levels. The goal is to reach the highest level by killing
-the monsters holding the keys to the next level.
+This is a hero based walking on tiles and killing monsters type of game.
+The Hero is controlled in a maze using the keyboard.
+The Hero and Monsters have levels and stats depending on their levels. 
+The goal is to reach the highest level
+by killing the Boss and the Skeleton holding the key to the next level.
 
 # Characters
 - Every character has a (max and current) health point (HP), a defend (DP) and
