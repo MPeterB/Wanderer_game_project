@@ -31,10 +31,18 @@ function levelUpEnemy(enemy: Character): void {
   const nextLevel: number = currentLevel + 1;
 
   enemy.level = nextLevel;
-  enemy.maxHealth = 2 * nextLevel * randomNumberMinMax(1, 6);
-  enemy.currentHealth = enemy.maxHealth;
-  enemy.defensePoint = (nextLevel / 2) * randomNumberMinMax(1, 6);
-  enemy.strikePoint = nextLevel * randomNumberMinMax(1, 6);
+
+  if (enemy.name === 'Skeleton') {
+    enemy.maxHealth = 2 * nextLevel * randomNumberMinMax(1, 6);
+    enemy.currentHealth = enemy.maxHealth;
+    enemy.defensePoint = (nextLevel / 2) * randomNumberMinMax(1, 6);
+    enemy.strikePoint = nextLevel * randomNumberMinMax(1, 6);
+  } else {
+    enemy.maxHealth = 2 * nextLevel * randomNumberMinMax(1, 6) + randomNumberMinMax(1, 6);
+    enemy.currentHealth = enemy.maxHealth;
+    enemy.defensePoint = (nextLevel / 2) * randomNumberMinMax(1, 6) + randomNumberMinMax(1, 6) / 2;
+    enemy.strikePoint = nextLevel * randomNumberMinMax(1, 6) + randomNumberMinMax(1, 6);
+  }
 }
 
 export function levelUpEnemies(): void {
