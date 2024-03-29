@@ -16,8 +16,13 @@ export const wonLevel: BooleanObject = {
   value: false,
 };
 
-export function startGame() {
+export function startGame(): void {
   moveEnemies();
+}
+
+export function goToGame(): void {
+  const preGameScreen = document.getElementById('preGameScreen') as HTMLElement;
+  preGameScreen.style.display = 'none';
 }
 
 export function randomNumberMinMax(min: number, max: number): number {
@@ -60,7 +65,7 @@ const wonLevelScreen = document.getElementById('wonLevelScreen') as HTMLElement;
 const alertBox = document.getElementById('alertBox') as HTMLElement;
 const statsContainer = document.getElementById('stats-container') as HTMLElement;
 
-export function winLevel() {
+export function winLevel(): void {
   wonLevel.value = true;
   heroCurrent.moving = false;
   gameInProgress.value = false;
