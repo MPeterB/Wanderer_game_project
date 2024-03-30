@@ -1,6 +1,8 @@
 body {
   width: 100%;
+  min-width: 550px;
   height: 100%;
+  min-height: 600px;
   margin: 0;
   padding: 0;
   position: relative;
@@ -49,7 +51,7 @@ body {
 
 #preGameScreen {
   height: 100%;
-  width: 500px;
+  width: 550px;
   text-align: center;
   background-color: white;
   display: block;
@@ -142,20 +144,30 @@ canvas {
 #stats-container {
   width: 500px;
   margin: auto;
+  margin-top: 10px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+}
+
+#stats-container h2 {
+  margin: 0;
 }
 
 #heroStats,
 .placeholderDiv {
-  width: 250px;
+  height: 30px;
+}
+
+.placeholderDiv {
+  margin-top: 20px;
 }
 
 #heroStats,
 #enemyStats {
-  flex-direction: column;
+  flex-direction: row;
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 #enemyStats {
@@ -166,6 +178,16 @@ canvas {
 #enemyStats div {
   display: flex;
   align-items: center;
+  height: 20px;
+}
+
+.name {
+  width: 100px;
+}
+
+.stats {
+  width: 370px;
+  justify-content: space-between;
 }
 
 #heroStats h3,
