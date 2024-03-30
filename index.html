@@ -19,11 +19,11 @@
     </div>
     <div class="screen-container">
       <div id="preGameScreen">
-        <h2>Welcome!</h2>
+        <h3>Welcome!</h3>
         <p>
           This is a hero based walking on tiles and killing monsters type of game.<br>
           The Hero is controlled in a maze using the keyboard.
-          The Hero and Monsters have levels and stats depending on their levels. 
+          The Hero and Monsters have levels and stats depending on their levels.<br>
           The goal is to reach the highest level
           by killing the Boss and the Skeleton holding the key to the next level.
         </p>
@@ -33,13 +33,13 @@
         </p>
         <p>
           When a character enters a tile which is occupied by an other, a battle forms.<br>
-          In battle, the characters can not move.<br>
-          The character entering the occupied tile is the attacker.<br>
+          In battle, the characters can not move.
+          The character entering the occupied tile is the attacker.
           If the attacker is a Monster, it will attack the Hero.<br>
           If the attacker is the Hero, the player will have 5 seconds
-          to attack the Monster with pressing space on their keyboard.<br>
+          to attack the Monster with pressing space on their keyboard.
           If during this 5 seconds the player does not attack,
-          the Monster will become the attacker and starts attacking the Hero.<br>
+          the Monster will become the attacker and starts attacking the Hero.
           The attacker strikes on the defender, then the defender strikes
           and this continues until one of the characters dies.
         </p>
@@ -48,7 +48,7 @@
           title="https://github.com/MPeterB/typescript_tile-based_game"
           target="_blank"
         >
-        For further information click here!
+        For further information about this project click here!
         </a><br>
         <button id="goToGameButton">Go to the game</button>
       </div>
@@ -80,19 +80,23 @@
     </div>
     <div id="stats-container">
       <div id="heroStats">
-        <h2>Hero</h2>
-        <div><h3>Level:</h3>&nbsp;<h3 id="heroLevel">1</h3></div>
-        <div><h3>HP:</h3>&nbsp;<h3 id="heroCurrentHP">8</h3><h3>/</h3><h3 id="heroMaxHP">10</h3></div>
-        <div><h3>DP:</h3>&nbsp;<h3 id="heroDefenseP">8</h3></div>
-        <div><h3>SP:</h3>&nbsp;<h3 id="heroStrikeP">6</h3></div>
+        <div class="name"><h2>Hero</h2></div>
+        <div class="stats">
+          <div><h3>Level:</h3>&nbsp;<h3 id="heroLevel">1</h3></div>
+          <div><h3>HP:</h3>&nbsp;<h3 id="heroCurrentHP">8</h3><h3>/</h3><h3 id="heroMaxHP">10</h3></div>
+          <div><h3>DP:</h3>&nbsp;<h3 id="heroDefenseP">8</h3></div>
+          <div><h3>SP:</h3>&nbsp;<h3 id="heroStrikeP">6</h3></div>
+        </div>
       </div>
       <div class="placeholderDiv">
         <div id="enemyStats">
-          <h2 id="enemyName">Enemy</h2>
-          <div><h3>Level:</h3>&nbsp;<h3 id="enemyLevel">1</h3></div>
-          <div><h3>HP:</h3>&nbsp;<h3 id="enemyCurrentHP">8</h3><h3>/</h3><h3 id="enemyMaxHP">10</h3></div>
-          <div><h3>DP:</h3>&nbsp;<h3 id="enemyDefenseP">8</h3></div>
-          <div><h3>SP:</h3>&nbsp;<h3 id="enemyStrikeP">6</h3></div>
+          <div class="name"><h2 id="enemyName">Enemy</h2></div>
+          <div class="stats">
+            <div><h3>Level:</h3>&nbsp;<h3 id="enemyLevel">1</h3></div>
+            <div><h3>HP:</h3>&nbsp;<h3 id="enemyCurrentHP">8</h3><h3>/</h3><h3 id="enemyMaxHP">10</h3></div>
+            <div><h3>DP:</h3>&nbsp;<h3 id="enemyDefenseP">8</h3></div>
+            <div><h3>SP:</h3>&nbsp;<h3 id="enemyStrikeP">6</h3></div>
+          </div>
         </div>
       </div>
     </div>
